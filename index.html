@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authority Dealer Rules</title>
+
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --panel: #141418;
+      --panel-soft: #1a1a20;
+      --text: #f2f2f2;
+      --muted: #a7a7b3;
+      --accent: #c7a35a;
+      --border: #2c2c34;
+      --good: #8ccf9f;
+      --warn: #e2b866;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top, rgba(199, 163, 90, 0.08), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .hero {
+      padding: 36px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #17171c, #101014);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 14px;
+      max-width: 760px;
+      font-size: 1.05rem;
+    }
+
+    .notice {
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-left: 4px solid var(--accent);
+      background: rgba(199, 163, 90, 0.08);
+      color: #ddd4c2;
+      border-radius: 8px;
+    }
+
+    section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--accent);
+      font-size: 1.35rem;
+    }
+
+    h3 {
+      color: #e8e8ec;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: #0d0d11;
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: #f3d79d;
+    }
+
+    .command-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .command {
+      background: var(--panel-soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .command strong {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .important {
+      border-left: 4px solid var(--warn);
+      background: rgba(226, 184, 102, 0.07);
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin-top: 14px;
+      margin-bottom: 14px;
+    }
+
+    .fairness {
+      border-left: 4px solid var(--good);
+      background: rgba(140, 207, 159, 0.06);
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin-top: 14px;
+    }
+
+    .rule-block {
+      padding: 14px;
+      background: var(--panel-soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-top: 12px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    footer {
+      color: var(--muted);
+      text-align: center;
+      margin-top: 36px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="hero">
+      <div class="eyebrow">The House</div>
+      <h1>Authority Dealer Rules</h1>
+
+      <p class="subtitle">
+        Authority is the stream’s persistent viewer currency. Claim it, wager it,
+        climb ranks, enter challenges, and survive whatever The House decides comes next.
+      </p>
+
+      <div class="notice">
+        These rules explain how Authority is earned, wagered, paid out, tracked, and corrected.
+        The goal is simple: if Authority moves, there should be a record explaining why.
+      </div>
+    </div>
+
+    <section>
+      <h2>Getting Started</h2>
+
+      <div class="command-grid">
+        <div class="command">
+          <strong>!claim</strong>
+          Claim Authority when eligible.
+        </div>
+
+        <div class="command">
+          <strong>!authority</strong>
+          Check your current Authority balance.
+        </div>
+
+        <div class="command">
+          <strong>!rank</strong>
+          Check your current rank.
+        </div>
+
+        <div class="command">
+          <strong>!bet yes &lt;amount&gt;</strong>
+          Bet Authority on YES while a market is open.
+        </div>
+
+        <div class="command">
+          <strong>!bet no &lt;amount&gt;</strong>
+          Bet Authority on NO while a market is open.
+        </div>
+
+        <div class="command">
+          <strong>!rules</strong>
+          Opens this rules page.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Authority & Identity</h2>
+
+      <p>
+        Authority is persistent. Your balance and rank carry between streams.
+      </p>
+
+      <p>
+        Your Authority account is tied to your stable Kick account ID, not only your visible username.
+        Usernames are stored as readable snapshots, but the stable account ID is what protects your
+        balance and history if your display name changes.
+      </p>
+
+      <div class="fairness">
+        This helps prevent a renamed account from being treated as a different Authority account
+        and protects against a payout being assigned only because somebody typed a matching display name.
+      </div>
+    </section>
+
+    <section>
+      <h2>Claims</h2>
+
+      <p>
+        Use <code>!claim</code> to collect Authority when eligible.
+      </p>
+
+      <p>
+        Claims are subject to a cooldown. If you claim too early, the claim is rejected and no
+        Authority is added.
+      </p>
+
+      <p>
+        Successful and rejected claims are recorded when the system has enough valid identity
+        information to process the attempt.
+      </p>
+    </section>
+
+    <section>
+      <h2>Betting</h2>
+
+      <p>
+        When The House opens a market, viewers may wager Authority on YES or NO.
+      </p>
+
+      <ul>
+        <li><code>!bet yes &lt;amount&gt;</code></li>
+        <li><code>!bet no &lt;amount&gt;</code></li>
+      </ul>
+
+      <div class="important">
+        A wager may be rejected if the market is not open, the market is already closed,
+        you do not have enough Authority, you already placed a wager on that market,
+        or the command is invalid.
+      </div>
+
+      <p>
+        A rejected wager does not deduct Authority.
+      </p>
+
+      <p>
+        Accepted wagers are recorded. Market opening, closing, and resolution are also recorded
+        so the market lifecycle can be reconstructed later if needed.
+      </p>
+
+      <p>
+        Once a market is resolved, accepted wagers are settled and the same market cannot be
+        paid out again.
+      </p>
+    </section>
+
+    <section>
+      <h2>Viewer 1v1</h2>
+
+      <p>
+        Viewer 1v1 redemptions enter the challenger queue.
+      </p>
+
+      <div class="rule-block">
+        <strong>Viewer wins:</strong> the active challenger receives
+        <strong>75,000 Authority</strong>.
+      </div>
+
+      <div class="rule-block">
+        <strong>Three wins:</strong> no Authority prize is awarded.
+      </div>
+
+      <p class="small">
+        The Viewer Win action resolves the challenge and awards the correct prize automatically.
+      </p>
+    </section>
+
+    <section>
+      <h2>Run It Back!</h2>
+
+      <p>
+        Run It Back! uses the same persistent challenger system.
+      </p>
+
+      <div class="rule-block">
+        <strong>Viewer wins:</strong> the active challenger receives
+        <strong>250,000 Authority</strong>.
+      </div>
+
+      <div class="rule-block">
+        <strong>Three wins:</strong> no Authority prize is awarded.
+      </div>
+
+      <p>
+        The prize amount is attached to the active challenge itself. The operator does not manually
+        choose between a 75,000 or 250,000 payout.
+      </p>
+    </section>
+
+    <section>
+      <h2>Overdelegated</h2>
+
+      <p>
+        Overdelegated is a rare Wheel result.
+      </p>
+
+      <div class="rule-block">
+        Every eligible viewer receives <strong>100,000 Authority</strong>.
+      </div>
+
+      <p>
+        Eligibility is based on whether Authority Dealer identified your Kick account as participating
+        during the <strong>current Authority Session</strong>.
+      </p>
+
+      <p>
+        The system can identify participation through recognized activity such as:
+      </p>
+
+      <ul>
+        <li>ordinary Kick chat activity;</li>
+        <li>Authority Dealer commands;</li>
+        <li>betting activity;</li>
+        <li>Channel Reward redemptions;</li>
+        <li>challenger activity.</li>
+      </ul>
+
+      <div class="important">
+        To guarantee Overdelegated eligibility, interact with chat or Authority Dealer at least once
+        during the current Authority Session.
+      </div>
+
+      <p>
+        Completely silent viewers who the platform never exposes to Authority Dealer cannot be guaranteed
+        an Overdelegated payout.
+      </p>
+
+      <p>
+        Repeated activity does not create repeated eligibility entries. Viewers are identified using
+        their stable Kick account ID.
+      </p>
+    </section>
+
+    <section>
+      <h2>Ranks, Wraith & Paragon</h2>
+
+      <p>
+        Authority-changing events can cause automatic progression.
+      </p>
+
+      <p>
+        Rank, Wraith, and Paragon state are evaluated by Authority Dealer after qualifying balance changes.
+        You do not need to run <code>!rank</code> for the backend to recognize a legitimate progression event.
+      </p>
+
+      <p>
+        Paragon unlock state is persistent and protected so the same genuine unlock is not repeatedly
+        treated as a new unlock.
+      </p>
+    </section>
+
+    <section>
+      <h2>Challenges & Channel Rewards</h2>
+
+      <p>
+        Certain Channel Rewards create challenger entries. Challenger queue order and lifecycle state are
+        persistent.
+      </p>
+
+      <p>
+        Duplicate redemption handling is protected by the redemption identity so replaying the same
+        redemption does not create another legitimate challenger entry.
+      </p>
+
+      <p>
+        Challenger starts, resolutions, cancellations, and prize awards are recorded so their history can
+        be reviewed later.
+      </p>
+    </section>
+
+    <section>
+      <h2>Refunds & Corrections</h2>
+
+      <p>
+        Authority Dealer includes an audited correction system for situations where a viewer can
+        demonstrably show that Authority should have been paid but was not.
+      </p>
+
+      <p>
+        Refunds are positive-only corrections. They are not a general-purpose balance editor.
+      </p>
+
+      <p>
+        A successful correction records information including:
+      </p>
+
+      <ul>
+        <li>the target viewer’s stable Kick account ID;</li>
+        <li>the readable username snapshot;</li>
+        <li>the exact Authority amount;</li>
+        <li>the balance before and after the correction;</li>
+        <li>the reason for the correction;</li>
+        <li>the operator identity when available;</li>
+        <li>a unique execution reference;</li>
+        <li>session context where available.</li>
+      </ul>
+
+      <p>
+        Duplicate execution protection prevents the same refund execution from being paid twice.
+      </p>
+
+      <div class="fairness">
+        Corrections are designed to be traceable rather than handled through invisible manual database edits.
+      </div>
+    </section>
+
+    <section>
+      <h2>Fairness & Audit History</h2>
+
+      <p>
+        Authority Dealer keeps persistent records for important game activity.
+      </p>
+
+      <p>
+        Depending on the event, this can include:
+      </p>
+
+      <ul>
+        <li>successful and rejected claims;</li>
+        <li>accepted and rejected wagers;</li>
+        <li>market opening, closing, and resolution;</li>
+        <li>wager wins and losses;</li>
+        <li>rank progression events;</li>
+        <li>Wraith and Paragon transitions;</li>
+        <li>Channel Reward and challenger lifecycle events;</li>
+        <li>challenge prizes;</li>
+        <li>Overdelegated payouts;</li>
+        <li>administrative refunds and corrections.</li>
+      </ul>
+
+      <p>
+        Balance-changing records store the viewer identity and relevant before/after balance information
+        so the operator can compare the recorded event against the persisted balance.
+      </p>
+
+      <div class="fairness">
+        If there is a dispute, the goal is to check the system record instead of relying on memory.
+      </div>
+    </section>
+
+    <section>
+      <h2>Important General Rules</h2>
+
+      <ul>
+        <li>Do not assume a rejected command changed your balance.</li>
+        <li>Do not assume simply having the stream open guarantees Overdelegated eligibility.</li>
+        <li>Accepted wagers are final once the market is resolved.</li>
+        <li>Duplicate or replayed destructive actions are protected where the system requires it.</li>
+        <li>Authority balances and ranks persist between streams.</li>
+        <li>Stable Kick account identity is more important than a changeable display name.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Questions or Disputes</h2>
+
+      <p>
+        If something appears wrong, raise it calmly in chat and explain what happened.
+      </p>
+
+      <p>
+        Where possible, the operator can review Authority Dealer history, market events, wager records,
+        challenger records, payout records, and correction history to determine what the system actually did.
+      </p>
+
+      <p>
+        If a legitimate missed payment is confirmed, the audited refund system exists specifically so the
+        exact amount can be corrected without silently rewriting somebody’s balance.
+      </p>
+    </section>
+
+    <footer>
+      Authority Dealer • The House
+    </footer>
+
+  </div>
+</body>
+</html>
