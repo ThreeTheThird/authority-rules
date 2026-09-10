@@ -76,28 +76,6 @@
         );
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      pointer-events: none;
-
-      background:
-        repeating-linear-gradient(
-          90deg,
-          transparent 0,
-          transparent 129px,
-          rgba(40, 183, 219, .020) 130px
-        ),
-        repeating-linear-gradient(
-          0deg,
-          transparent 0,
-          transparent 129px,
-          rgba(40, 183, 219, .014) 130px
-        );
-    }
-
     .site {
       width: min(1540px, calc(100% - 24px));
       margin: 0 auto;
@@ -110,7 +88,6 @@
 
     .header-shell {
       position: relative;
-      overflow: hidden;
 
       border-top:
         1px solid
@@ -132,8 +109,7 @@
         rgba(31, 193, 232, .055);
     }
 
-    .header-shell::before {
-      content: "";
+    .header-light {
       position: absolute;
 
       left: 2%;
@@ -153,6 +129,24 @@
       box-shadow:
         0 0 14px
         rgba(112, 232, 255, .50);
+    }
+
+    .header-gold {
+      position: absolute;
+
+      right: 4%;
+      bottom: -1px;
+
+      width: 18%;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
     }
 
     .header {
@@ -242,25 +236,12 @@
 
     .nav-current {
       color: var(--gold);
-    }
 
-    .nav-current::after {
-      content: "";
+      padding-bottom: 11px;
 
-      position: absolute;
-
-      left: 0;
-      right: 0;
-      bottom: -13px;
-
-      height: 2px;
-
-      background:
+      border-bottom:
+        2px solid
         var(--gold);
-
-      box-shadow:
-        0 0 10px
-        rgba(239, 195, 76, .62);
     }
 
     /* ======================================================
@@ -270,17 +251,17 @@
     .hero {
       position: relative;
 
-      display: grid;
-
-      grid-template-columns:
-        minmax(0, 50fr)
-        minmax(520px, 50fr);
-
-      min-height: 700px;
+      min-height: 710px;
 
       margin-top: 14px;
 
       overflow: hidden;
+
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 48fr)
+        minmax(560px, 52fr);
 
       border-left:
         1px solid
@@ -302,39 +283,108 @@
           #061b27 100%
         );
 
-      clip-path:
-        polygon(
-          0 0,
-          calc(100% - 28px) 0,
-          100% 28px,
-          100% 100%,
-          26px 100%,
-          0 calc(100% - 26px)
+      box-shadow:
+        0 22px 60px
+        rgba(0, 0, 0, .34);
+    }
+
+    .hero-top-line {
+      position: absolute;
+
+      left: 3%;
+      right: 3%;
+      top: 0;
+
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(76, 220, 250, .50),
+          transparent
         );
     }
 
-    .hero::before {
-      content: "";
-
+    .hero-bottom-line {
       position: absolute;
+
+      z-index: 30;
+
+      left: 36%;
+      right: 0;
+      bottom: 0;
+
+      height: 2px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--cyan-hot),
+          rgba(44, 196, 232, .30),
+          transparent
+        );
+
+      box-shadow:
+        0 -4px 25px
+        rgba(33, 192, 229, .18);
+    }
+
+    /* ======================================================
+       HERO ENVIRONMENT PNG
+       ====================================================== */
+
+    .hero-environment {
+      position: absolute;
+
+      z-index: 1;
+
+      right: -2%;
+      top: -4%;
+
+      width: 74%;
+      height: 108%;
+
+      object-fit: cover;
+      object-position: center center;
+
+      opacity: .90;
+
+      pointer-events: none;
+
+      filter:
+        brightness(.98)
+        saturate(1.08)
+        drop-shadow(
+          0 0 24px
+          rgba(31, 191, 229, .12)
+        );
+    }
+
+    .environment-fade {
+      position: absolute;
+
+      z-index: 2;
 
       inset: 0;
 
       pointer-events: none;
 
       background:
-        radial-gradient(
-          circle at 74% 47%,
-          rgba(27, 157, 197, .15),
-          transparent 30%
-        ),
         linear-gradient(
           90deg,
-          transparent 0 49.5%,
-          rgba(39, 182, 218, .06) 49.5% 49.7%,
-          transparent 49.7%
+          #031018 0%,
+          rgba(3, 16, 24, .98) 28%,
+          rgba(3, 16, 24, .70) 43%,
+          rgba(3, 16, 24, .20) 57%,
+          rgba(3, 16, 24, 0) 72%
         );
     }
+
+    /* ======================================================
+       HERO COPY
+       ====================================================== */
 
     .hero-copy {
       position: relative;
@@ -458,7 +508,6 @@
 
     /* ======================================================
        THREE STAGE
-       PNG LAYER SYSTEM
        ====================================================== */
 
     .three-stage {
@@ -466,158 +515,96 @@
 
       z-index: 10;
 
-      min-height: 700px;
+      min-height: 710px;
 
-      overflow: hidden;
+      overflow: visible;
     }
 
-    .three-stage::after {
-      content: "";
-
+    .three-fire {
       position: absolute;
 
-      z-index: 20;
+      z-index: 3;
+
+      left: 48%;
+      bottom: -110px;
+
+      transform:
+        translateX(-50%);
+
+      width: 158%;
+      max-width: 1050px;
+
+      height: 830px;
+
+      object-fit: contain;
+      object-position: center bottom;
+
+      opacity: 1;
+
+      pointer-events: none;
+
+      filter:
+        saturate(1.15)
+        brightness(1.08)
+        drop-shadow(
+          0 0 36px
+          rgba(255, 194, 47, .26)
+        );
+    }
+
+    .three-avatar {
+      position: absolute;
+
+      z-index: 10;
+
+      right: -18px;
+      bottom: -16px;
+
+      width: 86%;
+      max-width: 670px;
+
+      height: 690px;
+
+      object-fit: contain;
+      object-position: right bottom;
+
+      pointer-events: none;
+
+      filter:
+        drop-shadow(
+          -7px 0 10px
+          rgba(36, 197, 234, .18)
+        )
+        drop-shadow(
+          0 0 20px
+          rgba(255, 205, 67, .13)
+        )
+        drop-shadow(
+          0 30px 42px
+          rgba(0, 0, 0, .86)
+        );
+    }
+
+    .avatar-floor {
+      position: absolute;
+
+      z-index: 15;
 
       left: 0;
       right: 0;
       bottom: 0;
 
-      height: 90px;
-
-      pointer-events: none;
+      height: 78px;
 
       background:
         linear-gradient(
           180deg,
           transparent,
-          rgba(2, 11, 17, .25) 40%,
-          rgba(2, 10, 15, .72)
+          rgba(2, 11, 17, .18) 40%,
+          rgba(2, 10, 15, .58)
         );
-    }
-
-    .three-background,
-    .three-fire,
-    .three-avatar {
-      position: absolute;
 
       pointer-events: none;
-
-      user-select: none;
-    }
-
-    /* ARCHWAY */
-
-    .three-background {
-      z-index: 2;
-
-      left: 50%;
-      bottom: -25px;
-
-      transform:
-        translateX(-50%);
-
-      width: 108%;
-      max-width: 790px;
-      height: 690px;
-
-      object-fit: contain;
-      object-position: center bottom;
-
-      opacity: .88;
-
-      filter:
-        drop-shadow(
-          0 0 22px
-          rgba(31, 191, 229, .10)
-        );
-    }
-
-    /* FIRE / ENERGY */
-
-    .three-fire {
-      z-index: 4;
-
-      left: 50%;
-      bottom: -30px;
-
-      transform:
-        translateX(-50%);
-
-      width: 116%;
-      max-width: 835px;
-      height: 720px;
-
-      object-fit: contain;
-      object-position: center bottom;
-
-      opacity: .82;
-
-      mix-blend-mode: screen;
-
-      filter:
-        saturate(1.1)
-        contrast(1.05)
-        drop-shadow(
-          0 0 20px
-          rgba(255, 196, 55, .14)
-        );
-    }
-
-    /* THREE */
-
-    .three-avatar {
-      z-index: 10;
-
-      right: -8px;
-      bottom: -18px;
-
-      width: 96%;
-      max-width: 720px;
-      height: 700px;
-
-      object-fit: contain;
-      object-position: right bottom;
-
-      filter:
-        drop-shadow(
-          -7px 0 9px
-          rgba(36, 197, 234, .17)
-        )
-        drop-shadow(
-          0 0 17px
-          rgba(255, 205, 67, .10)
-        )
-        drop-shadow(
-          0 30px 42px
-          rgba(0, 0, 0, .84)
-        );
-    }
-
-    /* CYAN FLOOR RAIL */
-
-    .stage-rail {
-      position: absolute;
-
-      z-index: 25;
-
-      left: 6%;
-      right: 0;
-      bottom: 0;
-
-      height: 2px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          var(--cyan-hot),
-          rgba(44, 196, 232, .32),
-          transparent
-        );
-
-      box-shadow:
-        0 -4px 25px
-        rgba(33, 192, 229, .20);
     }
 
     /* ======================================================
@@ -633,7 +620,7 @@
         calc(100% - 64px);
 
       margin:
-        -68px
+        -70px
         auto
         0;
 
@@ -646,16 +633,6 @@
           180deg,
           rgba(8, 34, 46, .99),
           rgba(4, 18, 25, .99)
-        );
-
-      clip-path:
-        polygon(
-          20px 0,
-          100% 0,
-          100% calc(100% - 20px),
-          calc(100% - 20px) 100%,
-          0 100%,
-          0 20px
         );
 
       box-shadow:
@@ -699,9 +676,7 @@
       text-transform: uppercase;
     }
 
-    .command-title::before {
-      content: "///";
-
+    .command-prefix {
       margin-right: 11px;
 
       color: var(--gold);
@@ -754,9 +729,7 @@
       border-right: 0;
     }
 
-    .command::before {
-      content: "";
-
+    .command-top-line {
       position: absolute;
 
       left: 16px;
@@ -773,9 +746,7 @@
         );
     }
 
-    .command::after {
-      content: "";
-
+    .command-bottom-line {
       position: absolute;
 
       left: 18px;
@@ -813,7 +784,7 @@
     }
 
     /* ======================================================
-       RULES WRAPPER
+       RULES
        ====================================================== */
 
     .rules-shell {
@@ -880,10 +851,6 @@
       font-size: .89rem;
     }
 
-    /* ======================================================
-       RULE PANELS
-       ====================================================== */
-
     .rule-grid {
       display: grid;
 
@@ -918,16 +885,6 @@
           rgba(8, 31, 42, .91),
           rgba(4, 17, 24, .98)
         );
-
-      clip-path:
-        polygon(
-          0 0,
-          calc(100% - 18px) 0,
-          100% 18px,
-          100% 100%,
-          16px 100%,
-          0 calc(100% - 16px)
-        );
     }
 
     .rule:nth-child(4n + 2),
@@ -940,9 +897,7 @@
         );
     }
 
-    .rule::before {
-      content: "";
-
+    .rule-top-line {
       position: absolute;
 
       top: 0;
@@ -1049,12 +1004,12 @@
     .overdelegated {
       position: relative;
 
-      min-height: 350px;
+      min-height: 380px;
 
       margin-top: 14px;
 
       padding:
-        40px;
+        42px;
 
       overflow: hidden;
 
@@ -1075,33 +1030,12 @@
         );
     }
 
-    .overdelegated::before {
-      content: "";
-
-      position: absolute;
-
-      right: -10%;
-      top: -55%;
-
-      width: 560px;
-      height: 560px;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(29, 172, 211, .14),
-          transparent 65%
-        );
-
-      pointer-events: none;
-    }
-
     .over-copy {
       position: relative;
 
       z-index: 2;
 
-      max-width: 830px;
+      max-width: 920px;
     }
 
     .overdelegated h3 {
@@ -1129,14 +1063,11 @@
     }
 
     /* ======================================================
-       LEDGER
-       NO RANDOM CIRCLE
+       LEDGER / QUESTIONS / CORRECTIONS
        ====================================================== */
 
     .ledger {
       position: relative;
-
-      min-height: 320px;
 
       margin-top: 64px;
 
@@ -1164,7 +1095,7 @@
     }
 
     .ledger-copy {
-      max-width: 920px;
+      max-width: 980px;
     }
 
     .ledger h2 {
@@ -1182,27 +1113,51 @@
       color: #c5d0d5;
     }
 
-    .ledger-rule {
-      max-width: 700px;
-
-      margin-top: 25px;
+    .contact-box {
+      margin-top: 24px;
 
       padding:
-        16px
-        19px;
+        20px
+        22px;
 
       border-left:
         3px solid
-        var(--gold);
+        var(--cyan);
 
       background:
-        rgba(0, 0, 0, .20);
-
-      color: #ddd9cd;
+        linear-gradient(
+          90deg,
+          rgba(31, 200, 241, .08),
+          transparent
+        );
     }
 
-    .ledger-rule strong {
+    .contact-box strong {
       color: var(--gold-hot);
+    }
+
+    .email {
+      color: var(--cyan-hot);
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    .privacy {
+      margin-top: 34px;
+
+      padding-top: 28px;
+
+      border-top:
+        1px solid
+        rgba(55, 177, 207, .18);
+    }
+
+    .privacy h3 {
+      margin: 0 0 12px;
+
+      color: var(--gold);
+
+      font-size: 1.2rem;
     }
 
     /* ======================================================
@@ -1259,22 +1214,39 @@
         grid-template-columns: 1fr;
       }
 
+      .hero-environment {
+        width: 100%;
+        height: 100%;
+        right: 0;
+        top: 0;
+
+        opacity: .70;
+      }
+
+      .environment-fade {
+        background:
+          linear-gradient(
+            180deg,
+            rgba(3, 16, 24, .75),
+            rgba(3, 16, 24, .18)
+          );
+      }
+
       .hero-copy {
         padding-bottom: 18px;
       }
 
       .three-stage {
-        min-height: 590px;
-      }
-
-      .three-background {
-        width: 760px;
-        max-width: 110%;
+        min-height: 620px;
       }
 
       .three-fire {
-        width: 790px;
-        max-width: 114%;
+        left: 50%;
+
+        width: 940px;
+        max-width: 130%;
+
+        height: 760px;
       }
 
       .three-avatar {
@@ -1284,9 +1256,9 @@
         transform:
           translateX(-50%);
 
-        width: 690px;
+        width: 660px;
 
-        max-width: 104%;
+        max-width: 96%;
 
         object-position:
           center bottom;
@@ -1345,24 +1317,22 @@
       }
 
       .three-stage {
-        min-height: 490px;
-      }
-
-      .three-background {
-        width: 590px;
-        height: 500px;
+        min-height: 500px;
       }
 
       .three-fire {
-        width: 620px;
-        height: 520px;
+        width: 690px;
+        max-width: 140%;
+        height: 590px;
+
+        bottom: -75px;
       }
 
       .three-avatar {
-        width: 520px;
-        height: 500px;
+        width: 500px;
+        height: 490px;
 
-        max-width: 108%;
+        max-width: 105%;
       }
 
       .command-deck,
@@ -1408,22 +1378,19 @@
       }
 
       .three-stage {
-        min-height: 410px;
-      }
-
-      .three-background {
-        width: 480px;
-        height: 420px;
+        min-height: 420px;
       }
 
       .three-fire {
-        width: 510px;
-        height: 440px;
+        width: 560px;
+        height: 500px;
+
+        bottom: -65px;
       }
 
       .three-avatar {
-        width: 440px;
-        height: 420px;
+        width: 425px;
+        height: 410px;
       }
 
       footer {
@@ -1447,6 +1414,9 @@
        ====================================================== -->
 
   <div class="header-shell">
+
+    <div class="header-light"></div>
+    <div class="header-gold"></div>
 
     <header class="header">
 
@@ -1517,6 +1487,18 @@
 
   <section class="hero">
 
+    <div class="hero-top-line"></div>
+    <div class="hero-bottom-line"></div>
+
+
+    <img
+      src="three-background.png"
+      class="hero-environment"
+      alt=""
+    >
+
+    <div class="environment-fade"></div>
+
 
     <div class="hero-copy">
 
@@ -1557,7 +1539,7 @@
           If Authority moves,
         </strong>
 
-        there should be a record explaining why.
+        there is a record explaining why.
 
       </div>
 
@@ -1565,17 +1547,7 @@
 
 
 
-    <!-- ==================================================
-         THREE — REAL PNG LAYERS
-         ================================================== -->
-
     <div class="three-stage">
-
-      <img
-        src="three-background.png"
-        class="three-background"
-        alt=""
-      >
 
       <img
         src="three-fire.png"
@@ -1589,7 +1561,7 @@
         alt="Three"
       >
 
-      <div class="stage-rail"></div>
+      <div class="avatar-floor"></div>
 
     </div>
 
@@ -1606,11 +1578,12 @@
     <div class="command-head">
 
       <div class="command-title">
-        Getting Started
+        <span class="command-prefix">///</span>
+        GETTING STARTED
       </div>
 
       <div class="command-note">
-        Essential Commands
+        ESSENTIAL COMMANDS
       </div>
 
     </div>
@@ -1618,7 +1591,10 @@
 
     <div class="commands">
 
+
       <div class="command">
+
+        <div class="command-top-line"></div>
 
         <strong>
           !claim
@@ -1628,10 +1604,14 @@
           Claim Authority when eligible.
         </p>
 
+        <div class="command-bottom-line"></div>
+
       </div>
 
 
       <div class="command">
+
+        <div class="command-top-line"></div>
 
         <strong>
           !authority
@@ -1641,23 +1621,31 @@
           Check your current Authority balance.
         </p>
 
+        <div class="command-bottom-line"></div>
+
       </div>
 
 
       <div class="command">
+
+        <div class="command-top-line"></div>
 
         <strong>
           !rank
         </strong>
 
         <p>
-          See where you currently stand.
+          See your current rank.
         </p>
+
+        <div class="command-bottom-line"></div>
 
       </div>
 
 
       <div class="command">
+
+        <div class="command-top-line"></div>
 
         <strong>
           !bet yes &lt;amount&gt;
@@ -1667,10 +1655,14 @@
           Wager Authority on YES while betting is open.
         </p>
 
+        <div class="command-bottom-line"></div>
+
       </div>
 
 
       <div class="command">
+
+        <div class="command-top-line"></div>
 
         <strong>
           !bet no &lt;amount&gt;
@@ -1680,10 +1672,14 @@
           Wager Authority on NO while betting is open.
         </p>
 
+        <div class="command-bottom-line"></div>
+
       </div>
 
 
       <div class="command">
+
+        <div class="command-top-line"></div>
 
         <strong>
           !rules
@@ -1692,6 +1688,8 @@
         <p>
           Return to the official Authority Dealer rules.
         </p>
+
+        <div class="command-bottom-line"></div>
 
       </div>
 
@@ -1738,6 +1736,8 @@
 
       <article class="rule">
 
+        <div class="rule-top-line"></div>
+
         <h3>
           Authority & Identity
         </h3>
@@ -1753,8 +1753,9 @@
 
         <p>
           Usernames are stored as readable snapshots.
-          Changing your display name does not create
-          a new Authority identity.
+          If your display name changes,
+          your Authority balance and history remain tied
+          to the same underlying account.
         </p>
 
       </article>
@@ -1762,25 +1763,27 @@
 
 
       <article class="rule">
+
+        <div class="rule-top-line"></div>
 
         <h3>
           Claims
         </h3>
 
         <p>
-          Use <code>!claim</code>
-          when eligible.
+          You can use <code>!claim</code>
+          once every <span class="gold">20 minutes</span>.
         </p>
 
         <p>
-          Claims have a cooldown.
-          A claim made too early is rejected
-          and no Authority is added.
+          If you try to claim again before the 20-minute cooldown is over,
+          Authority Dealer declines the claim and tells you
+          how much time remains until you can claim again.
         </p>
 
         <p>
-          Valid identified claim attempts
-          are recorded by Authority Dealer.
+          Once the cooldown has finished,
+          you can claim again normally.
         </p>
 
       </article>
@@ -1788,6 +1791,8 @@
 
 
       <article class="rule">
+
+        <div class="rule-top-line"></div>
 
         <h3>
           Betting
@@ -1822,6 +1827,8 @@
 
       <article class="rule">
 
+        <div class="rule-top-line"></div>
+
         <h3>
           Resolution
         </h3>
@@ -1848,6 +1855,8 @@
 
       <article class="rule">
 
+        <div class="rule-top-line"></div>
+
         <h3>
           Viewer 1v1
         </h3>
@@ -1855,6 +1864,12 @@
         <p>
           Viewer 1v1 redemptions enter
           the persistent challenger queue.
+        </p>
+
+        <p>
+          Your challenge remains in the queue
+          until it is started, resolved,
+          or legitimately cancelled.
         </p>
 
         <p>
@@ -1873,25 +1888,27 @@
           no Authority prize.
         </p>
 
-        <p>
-          The correct payout belongs to
-          the active challenge
-          and is awarded automatically when resolved.
-        </p>
-
       </article>
 
 
 
       <article class="rule">
 
+        <div class="rule-top-line"></div>
+
         <h3>
           Run It Back!
         </h3>
 
         <p>
-          Run It Back! uses the same
-          persistent challenger system.
+          Run It Back! uses the same persistent challenger system
+          <span class="gold">as Viewer 1v1</span>.
+        </p>
+
+        <p>
+          If you redeem it,
+          your challenge enters the same persistent queue
+          and remains there until it is handled.
         </p>
 
         <p>
@@ -1910,124 +1927,36 @@
           no Authority prize.
         </p>
 
-        <p>
-          Authority Dealer determines
-          the correct payout
-          from the active challenge.
-        </p>
-
-      </article>
-
-    </section>
-
-
-
-    <!-- ==================================================
-         OVERDELEGATED
-         ================================================== -->
-
-    <section class="overdelegated">
-
-      <div class="over-copy">
-
-        <div class="kicker">
-          THE HOUSE CAN BE GENEROUS
-        </div>
-
-        <h3>
-          Overdelegated
-        </h3>
-
-        <p>
-          When Overdelegated lands,
-          every eligible viewer receives
-          <span class="gold">
-            +100,000 Authority.
-          </span>
-        </p>
-
-        <p>
-          Eligibility depends on Authority Dealer
-          identifying your Kick account during
-          the
-          <span class="gold">
-            current Authority Session.
-          </span>
-        </p>
-
-        <p>
-          Recognized participation can include:
-        </p>
-
-        <ul>
-          <li>ordinary Kick chat activity</li>
-          <li>Authority Dealer commands</li>
-          <li>betting activity</li>
-          <li>Channel Reward activity</li>
-          <li>challenger activity</li>
-        </ul>
-
-        <div class="cyan-note">
-
-          To guarantee eligibility,
-          interact with chat or Authority Dealer
-          at least once during the current session.
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <section
-      class="rule-grid"
-      style="margin-top: 12px;"
-    >
-
-
-      <article class="rule">
-
-        <h3>
-          Silent Viewers
-        </h3>
-
-        <p>
-          Simply having the stream open does not guarantee
-          that Kick exposes your identity to Authority Dealer.
-        </p>
-
-        <p>
-          A completely silent viewer who never generates
-          an identifiable interaction cannot be guaranteed
-          an Overdelegated payout.
-        </p>
-
       </article>
 
 
 
       <article class="rule">
 
+        <div class="rule-top-line"></div>
+
         <h3>
-          Ranks, Wraith & Paragon
+          Ranks
         </h3>
 
         <p>
-          Authority-changing events can automatically
-          trigger progression.
+          Your rank reflects your position
+          within the Authority system.
         </p>
 
         <p>
-          Rank, Wraith and Paragon state are evaluated
-          after qualifying Authority changes.
+          As your Authority changes,
+          your rank can change with it.
+          Rank progression is persistent between streams
+          and is evaluated automatically after
+          qualifying Authority changes.
         </p>
 
         <p>
           You do not need to type
           <code>!rank</code>
-          for legitimate progression to be recognized.
+          for progression to be recognized.
+          That command simply shows your current rank.
         </p>
 
       </article>
@@ -2035,6 +1964,8 @@
 
 
       <article class="rule">
+
+        <div class="rule-top-line"></div>
 
         <h3>
           Channel Rewards & Challenges
@@ -2062,34 +1993,98 @@
 
       </article>
 
+    </section>
 
 
-      <article class="rule">
+
+    <!-- ==================================================
+         OVERDELEGATED
+         ================================================== -->
+
+    <section class="overdelegated">
+
+      <div class="over-copy">
+
+        <div class="kicker">
+          THE HOUSE CAN BE GENEROUS
+        </div>
 
         <h3>
-          Corrections & Refunds
+          Overdelegated
         </h3>
 
         <p>
-          If a legitimate missed Authority payment
-          is confirmed,
-          Authority Dealer includes an audited
-          correction system.
+          Use your Channel Points,
+          spin the wheel,
+          and see what The House gives you.
         </p>
 
         <p>
-          Refunds are
-          <span class="safe">
-            positive-only corrections
-          </span>,
-          not a general-purpose balance editor.
+          If the wheel lands on
+          <span class="gold">Overdelegated</span>,
+          every eligible viewer receives
+          <span class="gold">
+            +100,000 Authority.
+          </span>
         </p>
 
-      </article>
+        <p>
+          To receive the payout,
+          Authority Dealer must have identified your Kick account
+          during the
+          <span class="gold">
+            current Authority Session.
+          </span>
+        </p>
 
+        <p>
+          Recognized participation can include:
+        </p>
+
+        <ul>
+          <li>sending an ordinary message in Kick chat</li>
+          <li>using an Authority Dealer command</li>
+          <li>placing a wager</li>
+          <li>redeeming a Channel Reward</li>
+          <li>participating in the challenger system</li>
+        </ul>
+
+        <div class="cyan-note">
+
+          <strong>
+            Silent viewers:
+          </strong>
+
+          simply having the stream open does not guarantee
+          that Kick exposes your account identity to Authority Dealer.
+          If you never generate an identifiable interaction during the session,
+          your account cannot be guaranteed an Overdelegated payout.
+
+          To make sure you are recognized,
+          interact with chat or Authority Dealer at least once
+          during the current Authority Session.
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         AUDIT + IDENTITY
+         ================================================== -->
+
+    <section
+      class="rule-grid"
+      style="margin-top: 12px;"
+    >
 
 
       <article class="rule">
+
+        <div class="rule-top-line"></div>
 
         <h3>
           Audit & Fairness
@@ -2117,6 +2112,8 @@
 
       <article class="rule">
 
+        <div class="rule-top-line"></div>
+
         <h3>
           Persistent Identity
         </h3>
@@ -2128,12 +2125,11 @@
         </p>
 
         <p>
-          That protects balances,
-          history,
-          payouts
-          and corrections
-          from username changes
-          and ambiguous name matching.
+          This protects your Authority balance,
+          game history,
+          challenge records,
+          payouts and corrections
+          if your username changes.
         </p>
 
       </article>
@@ -2143,7 +2139,7 @@
 
 
     <!-- ==================================================
-         LEDGER
+         LEDGER / QUESTIONS / CORRECTIONS / PRIVACY
          ================================================== -->
 
     <section class="ledger">
@@ -2155,36 +2151,84 @@
         </div>
 
         <h2>
-          Questions or disputes
+          Questions, disputes & missed payouts
         </h2>
 
         <p>
-          If something appears wrong,
-          explain what happened.
-          Where possible,
-          Authority history,
-          wagers,
-          challenge records,
-          payouts
-          and corrections
-          can be compared against the persisted record.
+          If you believe an Authority payment,
+          challenge reward,
+          Overdelegated payout,
+          refund or other legitimate reward was missed,
+          take note of the
+          <span class="gold">date, approximate time, reward or event involved,</span>
+          and the amount you expected if you know it.
         </p>
 
         <p>
-          If a legitimate missed payment is confirmed,
-          the exact amount can be corrected through
-          the audited refund system
-          instead of silently rewriting somebody’s balance.
+          Screenshots are also helpful.
+          With that information,
+          the relevant Authority Dealer records can be checked
+          to determine whether a mistake actually occurred.
         </p>
 
-        <div class="ledger-rule">
+        <p>
+          Chat can move quickly,
+          especially during active parts of the stream,
+          so refund requests or payout concerns mentioned only in chat
+          can sometimes be missed in the moment.
+        </p>
+
+
+        <div class="contact-box">
 
           <strong>
-            The House rule:
+            If you have a payout, refund or Authority concern:
           </strong>
 
-          if Authority moves,
-          the system should be able to explain why.
+          <p>
+            Email the date,
+            approximate time,
+            reward or event,
+            expected amount if known,
+            and any relevant screenshots to:
+          </p>
+
+          <div class="email">
+            threethethirdgames@gmail.com
+          </div>
+
+          <p>
+            That inbox is checked before each stream,
+            so issues can be reviewed and addressed
+            in a timely manner.
+          </p>
+
+        </div>
+
+
+        <div class="privacy">
+
+          <h3>
+            Privacy
+          </h3>
+
+          <p>
+            Authority Dealer does not collect or store
+            sensitive personal information.
+          </p>
+
+          <p>
+            The system stores only the platform and game information
+            needed to operate Authority Dealer,
+            such as your stable Kick account ID,
+            display-name snapshots,
+            Authority balance,
+            rank,
+            wagers,
+            challenge activity,
+            payouts
+            and related audit records.
+          </p>
 
         </div>
 
