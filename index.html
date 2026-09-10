@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,30 +9,29 @@
 
   <style>
     :root {
-      --void: #020609;
-      --black: #04090d;
-      --deep: #06131b;
-      --deep-2: #081923;
-      --surface: #091822;
-      --surface-light: #0c202b;
+      --void: #02060a;
+      --deep: #041019;
+      --deep2: #061722;
+      --panel: #081923;
+      --panel2: #0a202b;
 
-      --white: #f5f5f2;
-      --text: #c6d3da;
-      --muted: #698693;
+      --white: #f4f5f2;
+      --text: #c2d0d7;
+      --muted: #6d8997;
 
       --gold: #f1c44e;
-      --gold-hot: #ffda6b;
-      --gold-deep: #9d721c;
+      --gold-hot: #ffda68;
+      --gold-deep: #8e6418;
 
-      --cyan: #22c6ed;
-      --cyan-hot: #63dfff;
-      --cyan-deep: #0c718d;
+      --cyan: #1fc4ec;
+      --cyan-hot: #65e2ff;
+      --cyan-deep: #0e6d86;
 
-      --green: #75d9a0;
+      --green: #75d99f;
 
-      --line: rgba(51, 180, 216, .24);
-      --line-hot: rgba(61, 207, 241, .54);
-      --gold-line: rgba(241, 196, 78, .42);
+      --line: rgba(41, 171, 207, .24);
+      --line-hot: rgba(63, 214, 249, .50);
+      --gold-line: rgba(241, 196, 78, .40);
     }
 
     * {
@@ -60,155 +58,121 @@
       line-height: 1.65;
 
       background:
-        radial-gradient(
-          ellipse at 78% 3%,
-          rgba(12, 128, 168, .20),
-          transparent 30%
-        ),
-        radial-gradient(
-          ellipse at 12% 11%,
-          rgba(241, 196, 78, .055),
-          transparent 20%
-        ),
-        linear-gradient(
-          180deg,
-          #03090e 0%,
-          #041018 42%,
-          #02070b 100%
-        );
+        radial-gradient(circle at 82% 0%, rgba(18, 126, 165, .18), transparent 27%),
+        radial-gradient(circle at 12% 8%, rgba(241, 196, 78, .06), transparent 20%),
+        linear-gradient(180deg, #02080d 0%, #041018 44%, #020609 100%);
     }
-
-
-    /* -------------------------------------------------------
-       VERY SUBTLE ENVIRONMENT GRID
-       ------------------------------------------------------- */
 
     body::before {
       content: "";
-
       position: fixed;
       inset: 0;
       z-index: -2;
 
       pointer-events: none;
 
-      opacity: .34;
-
       background:
         repeating-linear-gradient(
           90deg,
           transparent 0,
           transparent 119px,
-          rgba(42, 183, 219, .025) 120px
+          rgba(47, 186, 221, .025) 120px
         ),
         repeating-linear-gradient(
           0deg,
           transparent 0,
           transparent 119px,
-          rgba(42, 183, 219, .018) 120px
+          rgba(47, 186, 221, .018) 120px
         );
     }
 
     body::after {
       content: "";
-
       position: fixed;
-      left: 0;
-      right: 0;
-      top: 0;
-
-      height: 340px;
-
+      inset: 0;
       z-index: -1;
 
       pointer-events: none;
 
       background:
         linear-gradient(
-          180deg,
-          rgba(22, 147, 188, .045),
-          transparent
+          90deg,
+          rgba(31, 196, 236, .018),
+          transparent 18%,
+          transparent 82%,
+          rgba(31, 196, 236, .018)
         );
     }
 
-
     .site {
-      width: min(1440px, calc(100% - 34px));
-
+      width: min(1460px, calc(100% - 34px));
       margin: 0 auto;
-
-      padding: 18px 0 70px;
+      padding: 16px 0 70px;
     }
 
+    /* ======================================================
+       HEADER
+       ====================================================== */
 
-    /* =======================================================
-       THE HOUSE LOGO
-       EXACTLY THREE BARS
-       ======================================================= */
-
-    .house-logo {
+    .header-shell {
       position: relative;
 
-      width: 50px;
-      height: 45px;
+      margin-bottom: 18px;
 
-      flex: 0 0 50px;
-
-      filter:
-        drop-shadow(0 0 4px rgba(255, 219, 107, .8))
-        drop-shadow(0 0 11px rgba(241, 196, 78, .25));
-    }
-
-    .house-logo span {
-      position: absolute;
-
-      display: block;
-
-      height: 6px;
-
-      border-radius: 10px;
+      border-top: 1px solid rgba(48, 200, 235, .50);
+      border-bottom: 1px solid rgba(48, 200, 235, .24);
 
       background:
         linear-gradient(
           180deg,
-          #fff4b1 0%,
-          #ffdc6d 32%,
-          #e5a82f 100%
+          rgba(4, 17, 25, .96),
+          rgba(3, 12, 18, .96)
         );
 
       box-shadow:
-        0 0 6px rgba(255, 219, 107, .65);
+        0 0 28px rgba(25, 183, 221, .05);
     }
 
-    .house-logo .logo-top {
-      width: 28px;
+    .header-shell::before {
+      content: "";
+      position: absolute;
 
-      top: 4px;
-      left: 11px;
+      top: -1px;
+      left: 2%;
+
+      width: 28%;
+      height: 2px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--cyan-hot),
+          transparent
+        );
+
+      box-shadow:
+        0 0 12px rgba(80, 218, 250, .55);
     }
 
-    .house-logo .logo-left {
-      width: 33px;
+    .header-shell::after {
+      content: "";
+      position: absolute;
 
-      top: 21px;
-      left: 5px;
+      right: 5%;
+      bottom: -1px;
 
-      transform: rotate(58deg);
+      width: 20%;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
     }
-
-    .house-logo .logo-right {
-      width: 33px;
-
-      top: 21px;
-      right: 5px;
-
-      transform: rotate(-58deg);
-    }
-
-
-    /* =======================================================
-       HEADER
-       ======================================================= */
 
     .header {
       display: flex;
@@ -217,24 +181,33 @@
 
       gap: 40px;
 
-      min-height: 72px;
+      min-height: 84px;
 
-      padding: 0 14px 15px;
-
-      border-bottom: 1px solid var(--line);
+      padding: 11px 22px;
     }
 
     .identity {
       display: flex;
       align-items: center;
 
-      gap: 13px;
+      gap: 14px;
+    }
+
+    .house-logo-img {
+      display: block;
+
+      width: 52px;
+      height: 52px;
+
+      object-fit: contain;
+
+      filter:
+        drop-shadow(0 0 8px rgba(255, 217, 99, .48))
+        drop-shadow(0 0 18px rgba(241, 196, 78, .16));
     }
 
     .house-name {
-      color: var(--white);
-
-      font-size: .84rem;
+      font-size: .85rem;
       font-weight: 800;
 
       letter-spacing: .25em;
@@ -245,7 +218,7 @@
     .tagline {
       margin-top: 3px;
 
-      color: #7292a0;
+      color: #75919e;
 
       font-size: .59rem;
 
@@ -258,7 +231,7 @@
       display: flex;
       align-items: center;
 
-      gap: 35px;
+      gap: 34px;
     }
 
     .nav span {
@@ -273,8 +246,7 @@
     }
 
     .nav-future {
-      color: #526974;
-
+      color: #536874;
       opacity: .55;
 
       cursor: default;
@@ -292,20 +264,19 @@
 
       left: 0;
       right: 0;
-      bottom: -11px;
+      bottom: -12px;
 
       height: 2px;
 
       background: var(--gold);
 
       box-shadow:
-        0 0 9px rgba(241, 196, 78, .58);
+        0 0 10px rgba(241, 196, 78, .55);
     }
 
-
-    /* =======================================================
+    /* ======================================================
        HERO
-       ======================================================= */
+       ====================================================== */
 
     .hero {
       position: relative;
@@ -313,35 +284,31 @@
       display: grid;
 
       grid-template-columns:
-        minmax(0, 55fr)
-        minmax(420px, 45fr);
+        minmax(0, 54fr)
+        minmax(430px, 46fr);
 
-      min-height: 610px;
-
-      margin-top: 18px;
+      min-height: 625px;
 
       overflow: hidden;
 
-      border:
-        1px solid
-        rgba(45, 190, 229, .30);
+      border: 1px solid rgba(46, 190, 226, .32);
 
       background:
         radial-gradient(
-          ellipse at 83% 45%,
-          rgba(19, 154, 197, .19),
-          transparent 31%
+          ellipse at 79% 42%,
+          rgba(27, 154, 193, .20),
+          transparent 30%
         ),
         radial-gradient(
-          ellipse at 83% 43%,
-          rgba(241, 196, 78, .07),
-          transparent 38%
+          ellipse at 77% 40%,
+          rgba(241, 196, 78, .08),
+          transparent 42%
         ),
         linear-gradient(
           100deg,
-          #041018 0%,
-          #06151e 52%,
-          #061720 100%
+          #031018 0%,
+          #051620 53%,
+          #061922 100%
         );
 
       clip-path:
@@ -350,44 +317,31 @@
           calc(100% - 26px) 0,
           100% 26px,
           100% 100%,
-          26px 100%,
-          0 calc(100% - 26px)
+          24px 100%,
+          0 calc(100% - 24px)
         );
 
       box-shadow:
-        0 22px 60px rgba(0, 0, 0, .36);
+        0 22px 70px rgba(0, 0, 0, .40);
     }
-
-
-    /* CYAN TOP EDGE */
 
     .hero::before {
       content: "";
 
       position: absolute;
 
-      top: 0;
-      left: 5%;
+      inset: 0;
 
-      width: 46%;
-      height: 2px;
+      pointer-events: none;
 
       background:
         linear-gradient(
-          90deg,
-          transparent,
-          var(--cyan-hot),
-          transparent
+          120deg,
+          transparent 0 66%,
+          rgba(51, 207, 242, .035) 66% 66.2%,
+          transparent 66.2%
         );
-
-      opacity: .65;
-
-      box-shadow:
-        0 0 12px var(--cyan);
     }
-
-
-    /* FLOOR LIGHT */
 
     .hero::after {
       content: "";
@@ -397,44 +351,43 @@
       right: 0;
       bottom: 0;
 
-      width: 53%;
+      width: 54%;
       height: 2px;
 
-      z-index: 7;
+      z-index: 20;
 
       background:
         linear-gradient(
           90deg,
           transparent,
-          rgba(74, 218, 249, .82),
+          rgba(83, 221, 251, .85),
           transparent
         );
 
       box-shadow:
-        0 -4px 25px rgba(31, 187, 225, .18);
+        0 -4px 26px rgba(37, 187, 224, .18);
     }
-
 
     .hero-copy {
       position: relative;
 
-      z-index: 10;
+      z-index: 15;
 
       display: flex;
       flex-direction: column;
       justify-content: center;
 
       padding:
-        68px
+        72px
         34px
-        68px
-        54px;
+        72px
+        56px;
     }
 
     .eyebrow {
       color: var(--gold);
 
-      font-size: .72rem;
+      font-size: .73rem;
       font-weight: 800;
 
       letter-spacing: .24em;
@@ -445,14 +398,12 @@
     h1 {
       margin: 14px 0 0;
 
-      max-width: 780px;
-
-      color: var(--white);
+      max-width: 800px;
 
       font-size:
         clamp(
-          4.3rem,
-          7.5vw,
+          4.2rem,
+          7.6vw,
           7.3rem
         );
 
@@ -463,17 +414,13 @@
 
     h1 .gold {
       color: var(--gold);
-
-      text-shadow:
-        0 0 30px
-        rgba(241, 196, 78, .08);
     }
 
-    .hero-copy-line {
-      width: 125px;
+    .hero-line {
+      width: 128px;
       height: 3px;
 
-      margin-top: 28px;
+      margin-top: 29px;
 
       background:
         linear-gradient(
@@ -483,43 +430,33 @@
         );
 
       box-shadow:
-        0 0 10px
-        rgba(241, 196, 78, .30);
+        0 0 12px rgba(241, 196, 78, .28);
     }
 
     .hero-lead {
-      max-width: 660px;
+      max-width: 680px;
 
-      margin: 24px 0 0;
+      margin-top: 24px;
 
-      color: #c4d2d9;
+      color: #c4d2d8;
 
       font-size: 1rem;
 
-      line-height: 1.75;
+      line-height: 1.78;
     }
 
     .hero-lead strong {
       color: var(--gold-hot);
     }
 
-
-    /* THE RULE */
-
     .hero-rule {
-      position: relative;
+      max-width: 660px;
 
-      max-width: 650px;
-
-      margin-top: 30px;
+      margin-top: 31px;
 
       padding:
         19px
-        24px
-        19px
-        27px;
-
-      color: #d8dde0;
+        24px;
 
       border-left:
         3px solid
@@ -533,11 +470,13 @@
         1px solid
         rgba(241, 196, 78, .13);
 
+      color: #d7dcdf;
+
       background:
         linear-gradient(
           90deg,
-          rgba(241, 196, 78, .095),
-          rgba(5, 22, 31, .20),
+          rgba(241, 196, 78, .10),
+          rgba(7, 29, 40, .15),
           transparent
         );
     }
@@ -546,128 +485,246 @@
       color: var(--gold-hot);
     }
 
-
-    /* =======================================================
-       THREE
-       ======================================================= */
+    /* ======================================================
+       CHARACTER WORLD / ENERGY
+       ====================================================== */
 
     .three-zone {
       position: relative;
 
-      min-height: 610px;
+      min-height: 625px;
 
-      z-index: 3;
-
-      overflow: visible;
+      overflow: hidden;
     }
 
-
-    /* LARGE CYAN HALO */
-
-    .three-zone::before {
-      content: "";
-
+    .halo-cyan {
       position: absolute;
 
-      width: 530px;
-      height: 530px;
+      width: 535px;
+      height: 535px;
 
-      left: 50%;
+      left: 52%;
       top: 48%;
 
-      transform:
-        translate(-50%, -50%);
+      transform: translate(-50%, -50%);
 
       border-radius: 50%;
 
-      border:
-        1px solid
-        rgba(51, 188, 225, .22);
+      border: 1px solid rgba(60, 200, 235, .24);
 
       box-shadow:
-        0 0 90px
-        rgba(21, 169, 209, .10);
-
-      opacity: .9;
+        0 0 85px rgba(29, 167, 207, .10),
+        inset 0 0 70px rgba(33, 169, 205, .04);
     }
 
-
-    /* GOLD INNER HALO */
-
-    .three-zone::after {
-      content: "";
-
+    .halo-gold {
       position: absolute;
 
-      width: 405px;
-      height: 405px;
+      width: 410px;
+      height: 410px;
 
-      left: 50%;
+      left: 52%;
       top: 46%;
 
-      transform:
-        translate(-50%, -50%);
+      transform: translate(-50%, -50%);
 
       border-radius: 50%;
 
-      border:
-        1px solid
-        rgba(241, 196, 78, .24);
+      border: 1px solid rgba(241, 196, 78, .27);
 
       background:
         radial-gradient(
           circle,
-          rgba(241, 196, 78, .10),
-          rgba(23, 122, 154, .045) 47%,
-          transparent 70%
+          rgba(241, 196, 78, .11),
+          rgba(28, 144, 179, .035) 48%,
+          transparent 69%
         );
 
       box-shadow:
-        0 0 55px
-        rgba(241, 196, 78, .07);
+        0 0 65px rgba(241, 196, 78, .07);
     }
 
-
-    .three-backlight {
+    .avatar-backlight {
       position: absolute;
 
-      width: 390px;
-      height: 490px;
+      width: 380px;
+      height: 480px;
 
-      left: 50%;
-      top: 48%;
+      left: 52%;
+      top: 49%;
 
-      transform:
-        translate(-50%, -50%);
-
-      z-index: 1;
-
-      border-radius: 50%;
+      transform: translate(-50%, -50%);
 
       background:
         radial-gradient(
           ellipse,
           rgba(241, 196, 78, .17),
-          rgba(24, 168, 209, .10) 43%,
-          transparent 70%
+          rgba(28, 172, 212, .09) 44%,
+          transparent 72%
         );
 
-      filter: blur(25px);
+      filter: blur(22px);
     }
 
+    /* ------------------------------------------------------
+       FLAME-LIKE ENERGY
+       ------------------------------------------------------ */
 
-    /* CYBER VERTICAL LIGHTS */
-
-    .three-light-left,
-    .three-light-right {
+    .flame-field {
       position: absolute;
 
+      inset: 0;
+
+      z-index: 2;
+
+      pointer-events: none;
+    }
+
+    .flame {
+      position: absolute;
+
+      bottom: 18px;
+
+      width: 92px;
+      height: 260px;
+
+      border-radius:
+        48% 52% 25% 30% /
+        68% 70% 30% 32%;
+
+      filter: blur(14px);
+
+      opacity: .45;
+
+      transform-origin: bottom center;
+
+      background:
+        linear-gradient(
+          180deg,
+          transparent 0%,
+          rgba(255, 211, 90, .10) 18%,
+          rgba(241, 196, 78, .48) 52%,
+          rgba(34, 191, 230, .16) 78%,
+          transparent 100%
+        );
+
+      box-shadow:
+        0 0 34px rgba(241, 196, 78, .14);
+    }
+
+    .flame::after {
+      content: "";
+
+      position: absolute;
+
+      left: 24%;
+      top: 14%;
+
+      width: 52%;
+      height: 70%;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255, 224, 115, .24),
+          rgba(241, 196, 78, .12),
+          transparent
+        );
+
+      filter: blur(8px);
+    }
+
+    .flame-1 {
+      left: 6%;
+      height: 230px;
+      transform: rotate(-11deg);
+    }
+
+    .flame-2 {
+      left: 18%;
+      height: 320px;
+      transform: rotate(-5deg);
+      opacity: .34;
+    }
+
+    .flame-3 {
+      left: 31%;
+      height: 275px;
+      transform: rotate(5deg);
+      opacity: .40;
+    }
+
+    .flame-4 {
+      right: 28%;
+      height: 300px;
+      transform: rotate(-4deg);
+      opacity: .40;
+    }
+
+    .flame-5 {
+      right: 15%;
+      height: 340px;
+      transform: rotate(7deg);
+      opacity: .36;
+    }
+
+    .flame-6 {
+      right: 3%;
+      height: 245px;
+      transform: rotate(12deg);
+      opacity: .44;
+    }
+
+    .cyan-flame {
+      position: absolute;
+
+      bottom: 0;
+
+      width: 80px;
+      height: 220px;
+
+      opacity: .28;
+
+      filter: blur(18px);
+
+      background:
+        linear-gradient(
+          180deg,
+          transparent,
+          rgba(49, 202, 238, .25),
+          rgba(30, 153, 193, .16),
+          transparent
+        );
+    }
+
+    .cyan-flame.left {
+      left: 0;
+      transform: rotate(-10deg);
+    }
+
+    .cyan-flame.right {
+      right: 0;
+      transform: rotate(10deg);
+    }
+
+    /* ------------------------------------------------------
+       CYBER RAILS
+       ------------------------------------------------------ */
+
+    .rail-left,
+    .rail-right {
+      position: absolute;
+
+      top: 95px;
+
       width: 2px;
-      height: 360px;
+      height: 385px;
 
-      top: 90px;
+      z-index: 1;
 
-      opacity: .30;
+      opacity: .36;
 
       background:
         linear-gradient(
@@ -678,61 +735,47 @@
         );
 
       box-shadow:
-        0 0 18px
-        rgba(34, 198, 237, .50);
+        0 0 18px rgba(31, 196, 236, .55);
     }
 
-    .three-light-left {
-      left: 4%;
+    .rail-left {
+      left: 3%;
     }
 
-    .three-light-right {
-      right: 2%;
+    .rail-right {
+      right: 3%;
     }
-
 
     .hero-avatar {
       position: absolute;
 
-      z-index: 6;
-
-      right: -4px;
+      right: -8px;
       bottom: -8px;
 
-      width: min(650px, 112%);
-      max-height: 625px;
+      z-index: 10;
+
+      width: min(675px, 114%);
+      max-height: 635px;
 
       object-fit: contain;
       object-position: right bottom;
 
       filter:
-        drop-shadow(
-          -5px 0 7px
-          rgba(39, 197, 233, .15)
-        )
-        drop-shadow(
-          0 0 17px
-          rgba(241, 196, 78, .10)
-        )
-        drop-shadow(
-          0 26px 38px
-          rgba(0, 0, 0, .82)
-        );
+        drop-shadow(-7px 0 9px rgba(37, 194, 231, .17))
+        drop-shadow(0 0 20px rgba(241, 196, 78, .10))
+        drop-shadow(0 28px 42px rgba(0, 0, 0, .86));
     }
 
-
-    /* DARK FADE INTO UI FLOOR */
-
-    .three-fade {
+    .bottom-fade {
       position: absolute;
-
-      z-index: 7;
 
       left: 0;
       right: 0;
       bottom: 0;
 
-      height: 75px;
+      z-index: 12;
+
+      height: 85px;
 
       pointer-events: none;
 
@@ -740,37 +783,34 @@
         linear-gradient(
           180deg,
           transparent,
-          rgba(3, 12, 18, .42)
+          rgba(3, 12, 18, .48)
         );
     }
 
-
-    /* =======================================================
+    /* ======================================================
        COMMAND DECK
-       ======================================================= */
+       ====================================================== */
 
     .command-deck {
       margin-top: 18px;
 
-      border:
-        1px solid
-        var(--line);
+      border: 1px solid var(--line);
 
       background:
         linear-gradient(
           180deg,
-          rgba(7, 25, 35, .93),
-          rgba(4, 15, 22, .97)
+          rgba(7, 28, 39, .96),
+          rgba(4, 16, 23, .98)
         );
 
       clip-path:
         polygon(
-          17px 0,
+          18px 0,
           100% 0,
-          100% calc(100% - 17px),
-          calc(100% - 17px) 100%,
+          100% calc(100% - 18px),
+          calc(100% - 18px) 100%,
           0 100%,
-          0 17px
+          0 18px
         );
     }
 
@@ -781,17 +821,15 @@
 
       gap: 30px;
 
-      padding: 17px 23px;
+      padding: 18px 23px;
 
-      border-bottom:
-        1px solid
-        var(--line);
+      border-bottom: 1px solid var(--line);
 
       background:
         linear-gradient(
           90deg,
-          rgba(11, 42, 55, .62),
-          rgba(6, 24, 33, .30)
+          rgba(11, 47, 61, .66),
+          rgba(6, 25, 34, .30)
         );
     }
 
@@ -811,13 +849,13 @@
 
       margin-right: 12px;
 
-      letter-spacing: -.08em;
-
       color: var(--gold);
+
+      letter-spacing: -.08em;
     }
 
     .deck-sub {
-      color: #5b879a;
+      color: #5d8c9f;
 
       font-size: .60rem;
 
@@ -826,18 +864,15 @@
       text-transform: uppercase;
     }
 
-
-    /* NOT BUTTONS */
-
     .commands {
       display: grid;
 
       grid-template-columns:
         repeat(6, 1fr);
 
-      padding: 15px;
-
       gap: 10px;
+
+      padding: 15px;
     }
 
     .command {
@@ -854,13 +889,13 @@
 
       border:
         1px solid
-        rgba(40, 174, 209, .31);
+        rgba(45, 179, 214, .31);
 
       background:
         linear-gradient(
           180deg,
-          rgba(9, 30, 40, .91),
-          rgba(5, 19, 26, .97)
+          rgba(9, 33, 44, .92),
+          rgba(5, 20, 28, .97)
         );
 
       clip-path:
@@ -873,19 +908,37 @@
         );
     }
 
+    .command::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 54px;
+      height: 2px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--cyan),
+          transparent
+        );
+    }
+
     .command::after {
       content: "";
 
       position: absolute;
 
-      left: 14px;
+      left: 15px;
       bottom: 13px;
 
       width: 27px;
       height: 1px;
 
-      background:
-        var(--cyan-deep);
+      background: var(--cyan-deep);
     }
 
     .command-name {
@@ -903,32 +956,31 @@
     .command-copy {
       margin-top: 15px;
 
-      color: #b6c7d0;
+      color: #b8c9d1;
 
       font-size: .82rem;
+
       line-height: 1.55;
     }
 
-
-    /* =======================================================
-       RULE INTRO
-       ======================================================= */
+    /* ======================================================
+       RULES INTRO
+       ====================================================== */
 
     .rules-intro {
       display: grid;
 
       grid-template-columns:
-        1fr
-        minmax(300px, .48fr);
+        1fr minmax(300px, .50fr);
 
       gap: 70px;
 
       align-items: end;
 
       padding:
-        72px
+        74px
         24px
-        30px;
+        31px;
     }
 
     .section-small {
@@ -947,9 +999,9 @@
 
       font-size:
         clamp(
-          2.4rem,
+          2.5rem,
           5vw,
-          4.3rem
+          4.4rem
         );
 
       line-height: 1;
@@ -962,15 +1014,14 @@
 
       color: var(--muted);
 
-      font-size: .88rem;
+      font-size: .89rem;
 
-      max-width: 430px;
+      max-width: 450px;
     }
 
-
-    /* =======================================================
-       RULE MODULES
-       ======================================================= */
+    /* ======================================================
+       RULE GRID
+       ====================================================== */
 
     .rule-grid {
       display: grid;
@@ -995,13 +1046,13 @@
 
       border:
         1px solid
-        rgba(47, 160, 190, .24);
+        rgba(49, 166, 195, .25);
 
       background:
         linear-gradient(
           145deg,
-          rgba(9, 29, 39, .88),
-          rgba(4, 16, 23, .98)
+          rgba(9, 31, 42, .90),
+          rgba(4, 17, 24, .98)
         );
 
       clip-path:
@@ -1020,8 +1071,8 @@
       background:
         linear-gradient(
           145deg,
-          rgba(7, 23, 32, .98),
-          rgba(10, 27, 36, .86)
+          rgba(6, 23, 32, .98),
+          rgba(10, 29, 39, .88)
         );
     }
 
@@ -1059,7 +1110,7 @@
 
     .rule p,
     .rule li {
-      color: #bccbd2;
+      color: #bdccd3;
 
       font-size: .90rem;
     }
@@ -1128,10 +1179,9 @@
         );
     }
 
-
-    /* =======================================================
-       SPECIAL FULL-WIDTH RULE
-       ======================================================= */
+    /* ======================================================
+       OVERDELEGATED FEATURE
+       ====================================================== */
 
     .overdelegated {
       position: relative;
@@ -1144,24 +1194,24 @@
       overflow: hidden;
 
       padding:
-        38px
-        38px;
+        40px
+        40px;
 
       border:
         1px solid
-        rgba(241, 196, 78, .29);
+        rgba(241, 196, 78, .30);
 
       background:
         radial-gradient(
-          circle at 90% 25%,
-          rgba(20, 148, 190, .14),
-          transparent 27%
+          circle at 88% 23%,
+          rgba(18, 146, 187, .15),
+          transparent 28%
         ),
         linear-gradient(
           110deg,
-          rgba(241, 196, 78, .075),
-          rgba(6, 24, 33, .96) 45%,
-          rgba(4, 15, 22, .98)
+          rgba(241, 196, 78, .08),
+          rgba(6, 25, 34, .96) 46%,
+          rgba(4, 16, 23, .98)
         );
 
       clip-path:
@@ -1188,7 +1238,7 @@
 
       border:
         1px solid
-        rgba(34, 198, 237, .11);
+        rgba(34, 198, 237, .12);
 
       border-radius: 50%;
     }
@@ -1202,16 +1252,16 @@
     }
 
     .overdelegated-copy {
-      max-width: 850px;
-
       position: relative;
 
       z-index: 2;
+
+      max-width: 850px;
     }
 
     .overdelegated p,
     .overdelegated li {
-      color: #c1ced4;
+      color: #c2cfd5;
 
       font-size: .92rem;
     }
@@ -1220,16 +1270,15 @@
       padding-left: 19px;
     }
 
-
-    /* =======================================================
+    /* ======================================================
        FAIRNESS FINALE
-       ======================================================= */
+       ====================================================== */
 
     .fairness {
       position: relative;
 
       margin:
-        70px
+        72px
         14px
         0;
 
@@ -1331,27 +1380,25 @@
       color: var(--gold-hot);
     }
 
-
-    /* =======================================================
+    /* ======================================================
        FOOTER
-       ======================================================= */
+       ====================================================== */
 
     footer {
       display: flex;
-
       align-items: center;
       justify-content: space-between;
 
       gap: 30px;
 
-      margin-top: 25px;
+      margin-top: 26px;
 
       padding:
-        18px
+        19px
         18px
         0;
 
-      color: #57737f;
+      color: #587580;
 
       font-size: .61rem;
 
@@ -1367,36 +1414,32 @@
       gap: 10px;
     }
 
-    .footer-left .house-logo {
-      width: 32px;
+    .footer-logo {
+      width: 29px;
       height: 29px;
 
-      transform: scale(.63);
+      object-fit: contain;
 
-      transform-origin:
-        left center;
-
-      margin-right: -13px;
+      filter:
+        drop-shadow(0 0 7px rgba(241, 196, 78, .35));
     }
 
     .footer-line {
       color: var(--gold-deep);
     }
 
-
-    /* =======================================================
+    /* ======================================================
        RESPONSIVE
-       ======================================================= */
+       ====================================================== */
 
     @media (max-width: 1150px) {
 
       .hero {
-        grid-template-columns:
-          minmax(0, 1fr);
+        grid-template-columns: 1fr;
       }
 
       .hero-copy {
-        padding-bottom: 0;
+        padding-bottom: 8px;
       }
 
       .three-zone {
@@ -1407,13 +1450,11 @@
         left: 50%;
         right: auto;
 
-        transform:
-          translateX(-50%);
+        transform: translateX(-50%);
 
-        object-position:
-          center bottom;
+        width: 640px;
 
-        width: 620px;
+        object-position: center bottom;
       }
 
       .commands {
@@ -1422,14 +1463,13 @@
       }
     }
 
-
     @media (max-width: 760px) {
 
       .site {
         width:
           min(
             100% - 18px,
-            1440px
+            1460px
           );
       }
 
@@ -1442,8 +1482,7 @@
       .nav {
         width: 100%;
 
-        justify-content:
-          space-between;
+        justify-content: space-between;
 
         gap: 9px;
       }
@@ -1466,29 +1505,29 @@
           clamp(
             3.7rem,
             15vw,
-            5.1rem
+            5.2rem
           );
       }
 
       .three-zone {
-        min-height: 450px;
+        min-height: 455px;
       }
 
-      .three-zone::before {
+      .halo-cyan {
         width: 390px;
         height: 390px;
       }
 
-      .three-zone::after {
+      .halo-gold {
         width: 300px;
         height: 300px;
       }
 
       .hero-avatar {
-        width: 480px;
+        width: 500px;
 
         max-width: 110%;
-        max-height: 480px;
+        max-height: 490px;
       }
 
       .commands {
@@ -1502,7 +1541,7 @@
         gap: 15px;
 
         padding:
-          55px
+          56px
           15px
           25px;
       }
@@ -1518,23 +1557,19 @@
       }
     }
 
-
     @media (max-width: 480px) {
 
       .identity {
         align-items: flex-start;
       }
 
-      .house-logo {
-        transform:
-          scale(.83);
-
-        transform-origin:
-          left top;
+      .house-logo-img {
+        width: 44px;
+        height: 44px;
       }
 
       .tagline {
-        max-width: 235px;
+        max-width: 240px;
 
         line-height: 1.55;
       }
@@ -1544,11 +1579,11 @@
       }
 
       .three-zone {
-        min-height: 390px;
+        min-height: 395px;
       }
 
       .hero-avatar {
-        width: 415px;
+        width: 430px;
       }
 
       footer {
@@ -1561,78 +1596,76 @@
   </style>
 </head>
 
-
-
 <body>
 
 <div class="site">
 
 
-  <!-- =====================================================
-       HEADER
-       ===================================================== -->
+  <!-- HEADER -->
 
-  <header class="header">
+  <div class="header-shell">
 
-    <div class="identity">
+    <header class="header">
 
-      <div class="house-logo" aria-label="The House">
-        <span class="logo-top"></span>
-        <span class="logo-left"></span>
-        <span class="logo-right"></span>
-      </div>
+      <div class="identity">
 
-      <div>
+        <img
+          src="house-logo.png"
+          class="house-logo-img"
+          alt="The House logo"
+        >
 
-        <div class="house-name">
-          THE HOUSE
+        <div>
+
+          <div class="house-name">
+            THE HOUSE
+          </div>
+
+          <div class="tagline">
+            AUTHORITY IS EARNED. THE TOP IS TAKEN.
+          </div>
+
         </div>
 
-        <div class="tagline">
-          AUTHORITY IS EARNED. THE TOP IS TAKEN.
-        </div>
-
       </div>
 
-    </div>
 
+      <nav class="nav" aria-label="Site navigation">
 
-    <nav class="nav" aria-label="Site navigation">
+        <span
+          class="nav-future"
+          aria-disabled="true">
+          SYSTEM
+        </span>
 
-      <span
-        class="nav-future"
-        aria-disabled="true">
-        SYSTEM
-      </span>
+        <span
+          class="nav-future"
+          aria-disabled="true">
+          LEADERBOARD
+        </span>
 
-      <span
-        class="nav-future"
-        aria-disabled="true">
-        LEADERBOARD
-      </span>
+        <span class="nav-current">
+          RULES
+        </span>
 
-      <span class="nav-current">
-        RULES
-      </span>
+        <span
+          class="nav-future"
+          aria-disabled="true">
+          ARCHIVE
+        </span>
 
-      <span
-        class="nav-future"
-        aria-disabled="true">
-        ARCHIVE
-      </span>
+      </nav>
 
-    </nav>
+    </header>
 
-  </header>
+  </div>
 
 
 
   <main>
 
 
-    <!-- ===================================================
-         HERO
-         =================================================== -->
+    <!-- HERO -->
 
     <section class="hero">
 
@@ -1649,7 +1682,7 @@
           </span>
         </h1>
 
-        <div class="hero-copy-line"></div>
+        <div class="hero-line"></div>
 
         <p class="hero-lead">
 
@@ -1678,13 +1711,31 @@
       </div>
 
 
-
       <div class="three-zone">
 
-        <div class="three-backlight"></div>
+        <div class="halo-cyan"></div>
+        <div class="halo-gold"></div>
 
-        <div class="three-light-left"></div>
-        <div class="three-light-right"></div>
+        <div class="avatar-backlight"></div>
+
+        <div class="rail-left"></div>
+        <div class="rail-right"></div>
+
+
+        <div class="flame-field">
+
+          <div class="flame flame-1"></div>
+          <div class="flame flame-2"></div>
+          <div class="flame flame-3"></div>
+          <div class="flame flame-4"></div>
+          <div class="flame flame-5"></div>
+          <div class="flame flame-6"></div>
+
+          <div class="cyan-flame left"></div>
+          <div class="cyan-flame right"></div>
+
+        </div>
+
 
         <img
           src="three-avatar.png"
@@ -1692,7 +1743,7 @@
           alt="Three"
         >
 
-        <div class="three-fade"></div>
+        <div class="bottom-fade"></div>
 
       </div>
 
@@ -1700,9 +1751,7 @@
 
 
 
-    <!-- ===================================================
-         COMMAND DECK
-         =================================================== -->
+    <!-- COMMAND DECK -->
 
     <section class="command-deck">
 
@@ -1722,6 +1771,7 @@
       <div class="commands">
 
         <div class="command">
+
           <div class="command-name">
             !claim
           </div>
@@ -1729,10 +1779,12 @@
           <div class="command-copy">
             Claim Authority when eligible.
           </div>
+
         </div>
 
 
         <div class="command">
+
           <div class="command-name">
             !authority
           </div>
@@ -1740,10 +1792,12 @@
           <div class="command-copy">
             Check your current Authority balance.
           </div>
+
         </div>
 
 
         <div class="command">
+
           <div class="command-name">
             !rank
           </div>
@@ -1751,10 +1805,12 @@
           <div class="command-copy">
             See where you currently stand.
           </div>
+
         </div>
 
 
         <div class="command">
+
           <div class="command-name">
             !bet yes &lt;amount&gt;
           </div>
@@ -1762,10 +1818,12 @@
           <div class="command-copy">
             Wager Authority on YES while betting is open.
           </div>
+
         </div>
 
 
         <div class="command">
+
           <div class="command-name">
             !bet no &lt;amount&gt;
           </div>
@@ -1773,10 +1831,12 @@
           <div class="command-copy">
             Wager Authority on NO while betting is open.
           </div>
+
         </div>
 
 
         <div class="command">
+
           <div class="command-name">
             !rules
           </div>
@@ -1784,6 +1844,7 @@
           <div class="command-copy">
             Return to the official Authority Dealer rules.
           </div>
+
         </div>
 
       </div>
@@ -1792,9 +1853,7 @@
 
 
 
-    <!-- ===================================================
-         RULES INTRO
-         =================================================== -->
+    <!-- RULE INTRO -->
 
     <section class="rules-intro">
 
@@ -1821,9 +1880,7 @@
 
 
 
-    <!-- ===================================================
-         MAIN RULE GRID
-         =================================================== -->
+    <!-- MAIN RULES -->
 
     <section class="rule-grid">
 
@@ -2009,9 +2066,7 @@
 
 
 
-    <!-- ===================================================
-         OVERDELEGATED FEATURE
-         =================================================== -->
+    <!-- OVERDELEGATED -->
 
     <section class="overdelegated">
 
@@ -2067,9 +2122,7 @@
 
 
 
-    <!-- ===================================================
-         SECOND RULE GRID
-         =================================================== -->
+    <!-- SECOND RULE GRID -->
 
     <section
       class="rule-grid"
@@ -2239,9 +2292,7 @@
 
 
 
-    <!-- ===================================================
-         FINAL FAIRNESS SECTION
-         =================================================== -->
+    <!-- FAIRNESS FINALE -->
 
     <section class="fairness">
 
@@ -2291,19 +2342,17 @@
 
 
 
-  <!-- =====================================================
-       FOOTER
-       ===================================================== -->
+  <!-- FOOTER -->
 
   <footer>
 
     <div class="footer-left">
 
-      <div class="house-logo">
-        <span class="logo-top"></span>
-        <span class="logo-left"></span>
-        <span class="logo-right"></span>
-      </div>
+      <img
+        src="house-logo.png"
+        class="footer-logo"
+        alt=""
+      >
 
       <span>
         The House
