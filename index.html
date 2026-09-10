@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#061018">
+  <meta name="theme-color" content="#031018">
 
   <title>Authority Dealer Rules | The House</title>
 
   <style>
     :root {
-      --black: #030609;
-      --deep: #061018;
-      --deep-2: #091721;
-      --surface: #0b151d;
-      --surface-2: #0e1c26;
+      --void: #020609;
+      --black: #04090d;
+      --deep: #06131b;
+      --deep-2: #081923;
+      --surface: #091822;
+      --surface-light: #0c202b;
 
-      --white: #f4f5f2;
-      --body: #c6d0d6;
-      --muted: #708894;
+      --white: #f5f5f2;
+      --text: #c6d3da;
+      --muted: #698693;
 
-      --gold: #f2c54f;
-      --gold-hot: #ffd86b;
-      --gold-dim: #a87b22;
+      --gold: #f1c44e;
+      --gold-hot: #ffda6b;
+      --gold-deep: #9d721c;
 
-      --cyan: #20bce5;
-      --cyan-hot: #56d8f5;
-      --cyan-dim: #11677f;
+      --cyan: #22c6ed;
+      --cyan-hot: #63dfff;
+      --cyan-deep: #0c718d;
 
-      --green: #77dba2;
+      --green: #75d9a0;
 
-      --line: rgba(70, 164, 190, .20);
-      --line-bright: rgba(52, 194, 230, .32);
+      --line: rgba(51, 180, 216, .24);
+      --line-hot: rgba(61, 207, 241, .54);
+      --gold-line: rgba(241, 196, 78, .42);
     }
 
     * {
@@ -44,110 +47,179 @@
     body {
       margin: 0;
       min-height: 100vh;
+
       color: var(--white);
-      font-family: Inter, "Segoe UI", Arial, sans-serif;
+
+      font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
       line-height: 1.65;
 
       background:
-        radial-gradient(circle at 82% 0%, rgba(22, 139, 179, .18), transparent 25%),
-        radial-gradient(circle at 15% 9%, rgba(242, 197, 79, .07), transparent 17%),
-        linear-gradient(180deg, #050b10 0%, #061018 38%, #030609 100%);
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-
-      background:
+        radial-gradient(
+          ellipse at 78% 3%,
+          rgba(12, 128, 168, .20),
+          transparent 30%
+        ),
+        radial-gradient(
+          ellipse at 12% 11%,
+          rgba(241, 196, 78, .055),
+          transparent 20%
+        ),
         linear-gradient(
-          90deg,
-          transparent 0%,
-          rgba(32, 188, 229, .018) 50%,
-          transparent 100%
+          180deg,
+          #03090e 0%,
+          #041018 42%,
+          #02070b 100%
         );
     }
 
-    .page {
-      width: min(1360px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 22px 0 80px;
+
+    /* -------------------------------------------------------
+       VERY SUBTLE ENVIRONMENT GRID
+       ------------------------------------------------------- */
+
+    body::before {
+      content: "";
+
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+
+      pointer-events: none;
+
+      opacity: .34;
+
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent 0,
+          transparent 119px,
+          rgba(42, 183, 219, .025) 120px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          transparent 0,
+          transparent 119px,
+          rgba(42, 183, 219, .018) 120px
+        );
     }
 
+    body::after {
+      content: "";
 
-    /* ==================================================
-       ACTUAL HOUSE LOGO
-       Three bars only. No generated symbol.
-       ================================================== */
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
 
-    .house-logo {
-      position: relative;
-      width: 54px;
-      height: 48px;
-      flex: 0 0 54px;
+      height: 340px;
 
-      filter:
-        drop-shadow(0 0 5px rgba(255, 211, 96, .65))
-        drop-shadow(0 0 13px rgba(242, 197, 79, .25));
-    }
+      z-index: -1;
 
-    .house-logo .bar {
-      position: absolute;
-      height: 7px;
-      border-radius: 999px;
+      pointer-events: none;
 
       background:
         linear-gradient(
           180deg,
-          #fff1a2 0%,
-          #ffd660 34%,
-          #e4a92c 100%
+          rgba(22, 147, 188, .045),
+          transparent
+        );
+    }
+
+
+    .site {
+      width: min(1440px, calc(100% - 34px));
+
+      margin: 0 auto;
+
+      padding: 18px 0 70px;
+    }
+
+
+    /* =======================================================
+       THE HOUSE LOGO
+       EXACTLY THREE BARS
+       ======================================================= */
+
+    .house-logo {
+      position: relative;
+
+      width: 50px;
+      height: 45px;
+
+      flex: 0 0 50px;
+
+      filter:
+        drop-shadow(0 0 4px rgba(255, 219, 107, .8))
+        drop-shadow(0 0 11px rgba(241, 196, 78, .25));
+    }
+
+    .house-logo span {
+      position: absolute;
+
+      display: block;
+
+      height: 6px;
+
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #fff4b1 0%,
+          #ffdc6d 32%,
+          #e5a82f 100%
         );
 
       box-shadow:
-        0 0 6px rgba(255, 216, 107, .7),
-        0 0 15px rgba(242, 197, 79, .28);
+        0 0 6px rgba(255, 219, 107, .65);
     }
 
-    .house-logo .top-bar {
-      width: 31px;
-      left: 11px;
+    .house-logo .logo-top {
+      width: 28px;
+
       top: 4px;
+      left: 11px;
     }
 
-    .house-logo .left-bar {
-      width: 35px;
-      left: 7px;
-      top: 20px;
+    .house-logo .logo-left {
+      width: 33px;
+
+      top: 21px;
+      left: 5px;
 
       transform: rotate(58deg);
-      transform-origin: center;
     }
 
-    .house-logo .right-bar {
-      width: 35px;
-      right: 7px;
-      top: 20px;
+    .house-logo .logo-right {
+      width: 33px;
+
+      top: 21px;
+      right: 5px;
 
       transform: rotate(-58deg);
-      transform-origin: center;
     }
 
 
-    /* ==================================================
+    /* =======================================================
        HEADER
-       ================================================== */
+       ======================================================= */
 
-    .site-header {
+    .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 40px;
 
-      min-height: 78px;
-      padding: 0 4px 18px;
+      min-height: 72px;
+
+      padding: 0 14px 15px;
 
       border-bottom: 1px solid var(--line);
     }
@@ -155,142 +227,275 @@
     .identity {
       display: flex;
       align-items: center;
-      gap: 14px;
+
+      gap: 13px;
     }
 
     .house-name {
-      font-size: .86rem;
+      color: var(--white);
+
+      font-size: .84rem;
       font-weight: 800;
+
       letter-spacing: .25em;
+
       text-transform: uppercase;
     }
 
-    .house-tagline {
+    .tagline {
       margin-top: 3px;
 
-      color: #87a3b0;
-      font-size: .62rem;
-      letter-spacing: .13em;
+      color: #7292a0;
+
+      font-size: .59rem;
+
+      letter-spacing: .14em;
+
       text-transform: uppercase;
     }
 
     .nav {
       display: flex;
       align-items: center;
-      gap: 32px;
+
+      gap: 35px;
     }
 
-    .nav-item {
+    .nav span {
       position: relative;
 
-      font-size: .69rem;
+      font-size: .66rem;
       font-weight: 700;
-      letter-spacing: .14em;
+
+      letter-spacing: .15em;
+
       text-transform: uppercase;
     }
 
     .nav-future {
-      color: #4f6671;
+      color: #526974;
+
+      opacity: .55;
+
       cursor: default;
       user-select: none;
     }
 
-    .nav-active {
+    .nav-current {
       color: var(--gold);
     }
 
-    .nav-active::after {
+    .nav-current::after {
       content: "";
+
       position: absolute;
+
       left: 0;
       right: 0;
-      bottom: -10px;
+      bottom: -11px;
 
       height: 2px;
 
       background: var(--gold);
 
       box-shadow:
-        0 0 9px rgba(242,197,79,.5);
+        0 0 9px rgba(241, 196, 78, .58);
     }
 
 
-    /* ==================================================
+    /* =======================================================
        HERO
-       ================================================== */
+       ======================================================= */
 
     .hero {
       position: relative;
-      overflow: hidden;
 
       display: grid;
-      grid-template-columns: 52% 48%;
-      min-height: 590px;
 
-      margin-top: 20px;
+      grid-template-columns:
+        minmax(0, 55fr)
+        minmax(420px, 45fr);
 
-      border-top: 1px solid var(--line-bright);
-      border-bottom: 1px solid var(--line-bright);
+      min-height: 610px;
+
+      margin-top: 18px;
+
+      overflow: hidden;
+
+      border:
+        1px solid
+        rgba(45, 190, 229, .30);
 
       background:
-        radial-gradient(circle at 83% 38%, rgba(22, 147, 189, .17), transparent 25%),
-        radial-gradient(circle at 81% 40%, rgba(242, 197, 79, .07), transparent 40%),
-        linear-gradient(90deg, #061019 0%, #07121a 53%, #061018 100%);
+        radial-gradient(
+          ellipse at 83% 45%,
+          rgba(19, 154, 197, .19),
+          transparent 31%
+        ),
+        radial-gradient(
+          ellipse at 83% 43%,
+          rgba(241, 196, 78, .07),
+          transparent 38%
+        ),
+        linear-gradient(
+          100deg,
+          #041018 0%,
+          #06151e 52%,
+          #061720 100%
+        );
+
+      clip-path:
+        polygon(
+          0 0,
+          calc(100% - 26px) 0,
+          100% 26px,
+          100% 100%,
+          26px 100%,
+          0 calc(100% - 26px)
+        );
+
+      box-shadow:
+        0 22px 60px rgba(0, 0, 0, .36);
     }
+
+
+    /* CYAN TOP EDGE */
 
     .hero::before {
       content: "";
+
       position: absolute;
-      inset: 0;
+
+      top: 0;
+      left: 5%;
+
+      width: 46%;
+      height: 2px;
 
       background:
         linear-gradient(
-          115deg,
-          transparent 0 65%,
-          rgba(41, 189, 226, .035) 65% 65.3%,
-          transparent 65.3%
+          90deg,
+          transparent,
+          var(--cyan-hot),
+          transparent
         );
 
-      pointer-events: none;
+      opacity: .65;
+
+      box-shadow:
+        0 0 12px var(--cyan);
     }
+
+
+    /* FLOOR LIGHT */
+
+    .hero::after {
+      content: "";
+
+      position: absolute;
+
+      right: 0;
+      bottom: 0;
+
+      width: 53%;
+      height: 2px;
+
+      z-index: 7;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(74, 218, 249, .82),
+          transparent
+        );
+
+      box-shadow:
+        0 -4px 25px rgba(31, 187, 225, .18);
+    }
+
 
     .hero-copy {
       position: relative;
-      z-index: 5;
+
+      z-index: 10;
 
       display: flex;
       flex-direction: column;
       justify-content: center;
 
-      padding: 65px 38px 65px 34px;
+      padding:
+        68px
+        34px
+        68px
+        54px;
     }
 
     .eyebrow {
       color: var(--gold);
-      font-size: .74rem;
+
+      font-size: .72rem;
       font-weight: 800;
-      letter-spacing: .22em;
+
+      letter-spacing: .24em;
+
       text-transform: uppercase;
     }
 
     h1 {
-      margin: 12px 0 0;
+      margin: 14px 0 0;
 
-      font-size: clamp(4rem, 7vw, 7rem);
-      line-height: .88;
-      letter-spacing: -.06em;
+      max-width: 780px;
+
+      color: var(--white);
+
+      font-size:
+        clamp(
+          4.3rem,
+          7.5vw,
+          7.3rem
+        );
+
+      line-height: .87;
+
+      letter-spacing: -.065em;
     }
 
     h1 .gold {
       color: var(--gold);
+
+      text-shadow:
+        0 0 30px
+        rgba(241, 196, 78, .08);
+    }
+
+    .hero-copy-line {
+      width: 125px;
+      height: 3px;
+
+      margin-top: 28px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--gold),
+          transparent
+        );
+
+      box-shadow:
+        0 0 10px
+        rgba(241, 196, 78, .30);
     }
 
     .hero-lead {
-      max-width: 650px;
-      margin: 30px 0 0;
+      max-width: 660px;
 
-      color: #c7d2d8;
-      font-size: 1.08rem;
+      margin: 24px 0 0;
+
+      color: #c4d2d9;
+
+      font-size: 1rem;
+
       line-height: 1.75;
     }
 
@@ -298,22 +503,41 @@
       color: var(--gold-hot);
     }
 
+
+    /* THE RULE */
+
     .hero-rule {
       position: relative;
 
-      max-width: 625px;
+      max-width: 650px;
+
       margin-top: 30px;
-      padding: 18px 20px 18px 24px;
 
-      border-left: 3px solid var(--gold);
+      padding:
+        19px
+        24px
+        19px
+        27px;
 
-      color: #d6dadd;
+      color: #d8dde0;
+
+      border-left:
+        3px solid
+        var(--gold);
+
+      border-top:
+        1px solid
+        rgba(241, 196, 78, .18);
+
+      border-bottom:
+        1px solid
+        rgba(241, 196, 78, .13);
 
       background:
         linear-gradient(
           90deg,
-          rgba(242,197,79,.09),
-          rgba(19,37,48,.18) 75%,
+          rgba(241, 196, 78, .095),
+          rgba(5, 22, 31, .20),
           transparent
         );
     }
@@ -323,238 +547,534 @@
     }
 
 
-    /* HERO CHARACTER */
+    /* =======================================================
+       THREE
+       ======================================================= */
 
-    .character-zone {
+    .three-zone {
       position: relative;
-      min-height: 590px;
 
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
+      min-height: 610px;
+
+      z-index: 3;
+
+      overflow: visible;
     }
 
-    .character-zone::before {
+
+    /* LARGE CYAN HALO */
+
+    .three-zone::before {
       content: "";
+
       position: absolute;
 
-      width: 470px;
-      height: 470px;
-      border-radius: 50%;
+      width: 530px;
+      height: 530px;
 
       left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
+      top: 48%;
 
-      border: 1px solid rgba(51,190,225,.19);
+      transform:
+        translate(-50%, -50%);
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(51, 188, 225, .22);
 
       box-shadow:
-        0 0 85px rgba(31, 165, 207, .09),
-        inset 0 0 85px rgba(242,197,79,.025);
+        0 0 90px
+        rgba(21, 169, 209, .10);
+
+      opacity: .9;
     }
 
-    .character-zone::after {
+
+    /* GOLD INNER HALO */
+
+    .three-zone::after {
       content: "";
+
       position: absolute;
 
-      width: 365px;
-      height: 365px;
-      border-radius: 50%;
+      width: 405px;
+      height: 405px;
 
       left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
+      top: 46%;
 
-      border: 1px solid rgba(242,197,79,.18);
+      transform:
+        translate(-50%, -50%);
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(241, 196, 78, .24);
 
       background:
         radial-gradient(
           circle,
-          rgba(242,197,79,.075),
-          rgba(18,100,130,.035) 45%,
+          rgba(241, 196, 78, .10),
+          rgba(23, 122, 154, .045) 47%,
           transparent 70%
         );
 
       box-shadow:
-        0 0 46px rgba(242,197,79,.055);
+        0 0 55px
+        rgba(241, 196, 78, .07);
     }
 
-    .character-glow {
+
+    .three-backlight {
       position: absolute;
 
-      left: 50%;
-      top: 52%;
-      transform: translate(-50%, -50%);
+      width: 390px;
+      height: 490px;
 
-      width: 360px;
-      height: 480px;
+      left: 50%;
+      top: 48%;
+
+      transform:
+        translate(-50%, -50%);
+
+      z-index: 1;
+
+      border-radius: 50%;
 
       background:
         radial-gradient(
           ellipse,
-          rgba(242,197,79,.13),
-          rgba(28,168,210,.07) 45%,
-          transparent 72%
+          rgba(241, 196, 78, .17),
+          rgba(24, 168, 209, .10) 43%,
+          transparent 70%
         );
 
-      filter: blur(20px);
-    }
-
-    .hero-avatar {
-      position: relative;
-      z-index: 4;
-
-      display: block;
-
-      width: min(610px, 105%);
-      max-height: 590px;
-
-      object-fit: contain;
-      object-position: center bottom;
-
-      filter:
-        drop-shadow(0 0 18px rgba(242,197,79,.08))
-        drop-shadow(0 22px 35px rgba(0,0,0,.75));
+      filter: blur(25px);
     }
 
 
-    /* ==================================================
-       COMMANDS
-       Informational — NOT interactive
-       ================================================== */
+    /* CYBER VERTICAL LIGHTS */
 
-    .commands-section {
-      padding: 58px 12px 12px;
-    }
+    .three-light-left,
+    .three-light-right {
+      position: absolute;
 
-    .section-kicker {
-      color: var(--gold);
-      font-size: .68rem;
-      font-weight: 800;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
+      width: 2px;
+      height: 360px;
 
-    .section-heading {
-      margin: 5px 0 0;
+      top: 90px;
 
-      font-size: 2.1rem;
-      letter-spacing: -.035em;
-    }
-
-    .section-intro {
-      max-width: 680px;
-
-      margin: 8px 0 0;
-
-      color: var(--muted);
-    }
-
-    .command-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-
-      margin-top: 28px;
-
-      border-top: 1px solid var(--line);
-      border-left: 1px solid var(--line);
-    }
-
-    .command {
-      min-height: 150px;
-      padding: 20px 17px;
-
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+      opacity: .30;
 
       background:
         linear-gradient(
           180deg,
-          rgba(10, 27, 37, .78),
-          rgba(6, 17, 24, .70)
+          transparent,
+          var(--cyan),
+          transparent
         );
 
+      box-shadow:
+        0 0 18px
+        rgba(34, 198, 237, .50);
+    }
+
+    .three-light-left {
+      left: 4%;
+    }
+
+    .three-light-right {
+      right: 2%;
+    }
+
+
+    .hero-avatar {
+      position: absolute;
+
+      z-index: 6;
+
+      right: -4px;
+      bottom: -8px;
+
+      width: min(650px, 112%);
+      max-height: 625px;
+
+      object-fit: contain;
+      object-position: right bottom;
+
+      filter:
+        drop-shadow(
+          -5px 0 7px
+          rgba(39, 197, 233, .15)
+        )
+        drop-shadow(
+          0 0 17px
+          rgba(241, 196, 78, .10)
+        )
+        drop-shadow(
+          0 26px 38px
+          rgba(0, 0, 0, .82)
+        );
+    }
+
+
+    /* DARK FADE INTO UI FLOOR */
+
+    .three-fade {
+      position: absolute;
+
+      z-index: 7;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      height: 75px;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          180deg,
+          transparent,
+          rgba(3, 12, 18, .42)
+        );
+    }
+
+
+    /* =======================================================
+       COMMAND DECK
+       ======================================================= */
+
+    .command-deck {
+      margin-top: 18px;
+
+      border:
+        1px solid
+        var(--line);
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(7, 25, 35, .93),
+          rgba(4, 15, 22, .97)
+        );
+
+      clip-path:
+        polygon(
+          17px 0,
+          100% 0,
+          100% calc(100% - 17px),
+          calc(100% - 17px) 100%,
+          0 100%,
+          0 17px
+        );
+    }
+
+    .deck-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+
+      padding: 17px 23px;
+
+      border-bottom:
+        1px solid
+        var(--line);
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(11, 42, 55, .62),
+          rgba(6, 24, 33, .30)
+        );
+    }
+
+    .deck-title {
+      color: var(--gold);
+
+      font-size: 1.08rem;
+      font-weight: 800;
+
+      letter-spacing: .10em;
+
+      text-transform: uppercase;
+    }
+
+    .deck-title::before {
+      content: "///";
+
+      margin-right: 12px;
+
+      letter-spacing: -.08em;
+
+      color: var(--gold);
+    }
+
+    .deck-sub {
+      color: #5b879a;
+
+      font-size: .60rem;
+
+      letter-spacing: .20em;
+
+      text-transform: uppercase;
+    }
+
+
+    /* NOT BUTTONS */
+
+    .commands {
+      display: grid;
+
+      grid-template-columns:
+        repeat(6, 1fr);
+
+      padding: 15px;
+
+      gap: 10px;
+    }
+
+    .command {
+      position: relative;
+
+      min-height: 168px;
+
+      padding:
+        22px
+        17px
+        29px;
+
       cursor: default;
+
+      border:
+        1px solid
+        rgba(40, 174, 209, .31);
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(9, 30, 40, .91),
+          rgba(5, 19, 26, .97)
+        );
+
+      clip-path:
+        polygon(
+          0 0,
+          calc(100% - 11px) 0,
+          100% 11px,
+          100% 100%,
+          0 100%
+        );
+    }
+
+    .command::after {
+      content: "";
+
+      position: absolute;
+
+      left: 14px;
+      bottom: 13px;
+
+      width: 27px;
+      height: 1px;
+
+      background:
+        var(--cyan-deep);
     }
 
     .command-name {
       color: var(--gold-hot);
 
-      font-family: Consolas, Monaco, monospace;
-      font-size: .91rem;
+      font-family:
+        Consolas,
+        Monaco,
+        monospace;
+
+      font-size: .92rem;
       font-weight: 700;
     }
 
-    .command-description {
-      margin-top: 13px;
+    .command-copy {
+      margin-top: 15px;
 
-      color: #afc0c9;
+      color: #b6c7d0;
+
       font-size: .82rem;
       line-height: 1.55;
     }
 
 
-    /* ==================================================
-       CONTENT
-       ================================================== */
+    /* =======================================================
+       RULE INTRO
+       ======================================================= */
 
-    .rules {
-      margin-top: 62px;
-    }
-
-    .chapter {
+    .rules-intro {
       display: grid;
-      grid-template-columns: 240px minmax(0, 1fr);
-      gap: 50px;
 
-      padding: 38px 14px;
+      grid-template-columns:
+        1fr
+        minmax(300px, .48fr);
 
-      border-top: 1px solid var(--line);
+      gap: 70px;
+
+      align-items: end;
+
+      padding:
+        72px
+        24px
+        30px;
     }
 
-    .chapter:last-child {
-      border-bottom: 1px solid var(--line);
-    }
-
-    .chapter-title {
+    .section-small {
       color: var(--gold);
-      font-size: 1.16rem;
-      font-weight: 750;
-      line-height: 1.3;
+
+      font-size: .66rem;
+      font-weight: 800;
+
+      letter-spacing: .20em;
+
+      text-transform: uppercase;
     }
 
-    .chapter-title::before {
-      content: "";
-      display: block;
+    .rules-intro h2 {
+      margin: 5px 0 0;
 
-      width: 38px;
+      font-size:
+        clamp(
+          2.4rem,
+          5vw,
+          4.3rem
+        );
+
+      line-height: 1;
+
+      letter-spacing: -.05em;
+    }
+
+    .rules-intro p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: .88rem;
+
+      max-width: 430px;
+    }
+
+
+    /* =======================================================
+       RULE MODULES
+       ======================================================= */
+
+    .rule-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 13px;
+
+      padding: 0 14px;
+    }
+
+    .rule {
+      position: relative;
+
+      min-height: 245px;
+
+      padding:
+        29px
+        31px
+        34px;
+
+      border:
+        1px solid
+        rgba(47, 160, 190, .24);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(9, 29, 39, .88),
+          rgba(4, 16, 23, .98)
+        );
+
+      clip-path:
+        polygon(
+          0 0,
+          calc(100% - 18px) 0,
+          100% 18px,
+          100% 100%,
+          15px 100%,
+          0 calc(100% - 15px)
+        );
+    }
+
+    .rule:nth-child(4n + 2),
+    .rule:nth-child(4n + 3) {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(7, 23, 32, .98),
+          rgba(10, 27, 36, .86)
+        );
+    }
+
+    .rule::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 85px;
       height: 2px;
 
-      margin-bottom: 14px;
-
-      background: var(--gold);
+      background:
+        linear-gradient(
+          90deg,
+          var(--gold),
+          transparent
+        );
     }
 
-    .chapter-body {
-      max-width: 870px;
+    .rule h3 {
+      margin:
+        0
+        0
+        17px;
+
+      color: var(--gold);
+
+      font-size: 1.18rem;
+
+      letter-spacing: .015em;
     }
 
-    .chapter-body p,
-    .chapter-body li {
-      color: var(--body);
-      font-size: .96rem;
+    .rule p,
+    .rule li {
+      color: #bccbd2;
+
+      font-size: .90rem;
     }
 
-    .chapter-body p:first-child {
-      margin-top: 0;
+    .rule p:last-child {
+      margin-bottom: 0;
     }
 
-    .chapter-body ul {
-      padding-left: 20px;
+    .rule ul {
+      padding-left: 19px;
+      margin-bottom: 0;
     }
 
-    .chapter-body li {
-      margin-bottom: 6px;
+    .rule li {
+      margin-bottom: 5px;
     }
 
     code {
@@ -562,253 +1082,478 @@
 
       color: var(--gold-hot);
 
-      font-family: Consolas, Monaco, monospace;
+      font-family:
+        Consolas,
+        Monaco,
+        monospace;
 
-      background: rgba(242,197,79,.07);
+      background:
+        rgba(241, 196, 78, .07);
 
-      border: 1px solid rgba(242,197,79,.14);
+      border:
+        1px solid
+        rgba(241, 196, 78, .14);
+
       border-radius: 3px;
     }
 
-    .gold-text {
+    .gold {
       color: var(--gold-hot);
       font-weight: 700;
     }
 
-    .safe-text {
+    .safe {
       color: var(--green);
       font-weight: 700;
     }
 
-    .info-note {
-      margin-top: 18px;
-      padding: 15px 18px;
+    .cyan-note {
+      margin-top: 17px;
 
-      border-left: 3px solid var(--cyan);
+      padding:
+        13px
+        15px;
 
-      color: #c4d9e2;
+      color: #c5e0e8;
+
+      border-left:
+        3px solid
+        var(--cyan);
 
       background:
         linear-gradient(
           90deg,
-          rgba(32,188,229,.09),
+          rgba(34, 198, 237, .085),
           transparent
         );
     }
 
 
-    /* ==================================================
-       FEATURE / FAIRNESS
-       ================================================== */
+    /* =======================================================
+       SPECIAL FULL-WIDTH RULE
+       ======================================================= */
 
-    .fairness {
+    .overdelegated {
       position: relative;
 
-      margin-top: 70px;
-      padding: 44px;
+      margin:
+        13px
+        14px
+        0;
 
       overflow: hidden;
 
-      border-top: 1px solid rgba(242,197,79,.24);
-      border-bottom: 1px solid rgba(242,197,79,.24);
+      padding:
+        38px
+        38px;
+
+      border:
+        1px solid
+        rgba(241, 196, 78, .29);
 
       background:
-        radial-gradient(circle at 90% 20%, rgba(28,164,206,.10), transparent 28%),
+        radial-gradient(
+          circle at 90% 25%,
+          rgba(20, 148, 190, .14),
+          transparent 27%
+        ),
         linear-gradient(
-          115deg,
-          rgba(242,197,79,.075),
-          rgba(9,22,30,.88) 42%,
-          rgba(4,12,18,.92)
+          110deg,
+          rgba(241, 196, 78, .075),
+          rgba(6, 24, 33, .96) 45%,
+          rgba(4, 15, 22, .98)
+        );
+
+      clip-path:
+        polygon(
+          0 0,
+          calc(100% - 21px) 0,
+          100% 21px,
+          100% 100%,
+          21px 100%,
+          0 calc(100% - 21px)
         );
     }
 
-    .fairness::after {
+    .overdelegated::after {
       content: "";
 
       position: absolute;
 
-      right: -80px;
-      top: -180px;
+      width: 430px;
+      height: 430px;
 
-      width: 470px;
-      height: 470px;
+      right: -120px;
+      top: -220px;
+
+      border:
+        1px solid
+        rgba(34, 198, 237, .11);
+
+      border-radius: 50%;
+    }
+
+    .overdelegated h3 {
+      margin: 0;
+
+      color: var(--gold);
+
+      font-size: 1.55rem;
+    }
+
+    .overdelegated-copy {
+      max-width: 850px;
+
+      position: relative;
+
+      z-index: 2;
+    }
+
+    .overdelegated p,
+    .overdelegated li {
+      color: #c1ced4;
+
+      font-size: .92rem;
+    }
+
+    .overdelegated ul {
+      padding-left: 19px;
+    }
+
+
+    /* =======================================================
+       FAIRNESS FINALE
+       ======================================================= */
+
+    .fairness {
+      position: relative;
+
+      margin:
+        70px
+        14px
+        0;
+
+      min-height: 320px;
+
+      padding:
+        45px
+        40px;
+
+      overflow: hidden;
+
+      border-top:
+        1px solid
+        var(--gold-line);
+
+      border-bottom:
+        1px solid
+        var(--gold-line);
+
+      background:
+        linear-gradient(
+          115deg,
+          rgba(241, 196, 78, .08),
+          rgba(8, 31, 41, .88) 43%,
+          rgba(4, 17, 24, .97)
+        );
+    }
+
+    .fairness::before {
+      content: "";
+
+      position: absolute;
+
+      right: 6%;
+      top: 50%;
+
+      transform:
+        translateY(-50%);
+
+      width: 300px;
+      height: 300px;
 
       border-radius: 50%;
 
-      border: 1px solid rgba(32,188,229,.09);
+      border:
+        1px solid
+        rgba(34, 198, 237, .13);
+
+      box-shadow:
+        inset 0 0 70px
+        rgba(34, 198, 237, .035);
+    }
+
+    .fairness-content {
+      position: relative;
+
+      z-index: 3;
+
+      max-width: 850px;
     }
 
     .fairness h2 {
-      margin: 5px 0 0;
+      margin:
+        6px
+        0
+        17px;
 
-      font-size: 2.3rem;
+      font-size: 2.25rem;
+
       letter-spacing: -.04em;
     }
 
     .fairness p {
-      position: relative;
-      z-index: 2;
+      color: #c5d0d5;
 
-      max-width: 900px;
-
-      color: #c5ced3;
+      max-width: 820px;
     }
 
-    .fairness-rule {
-      position: relative;
-      z-index: 2;
+    .final-rule {
+      max-width: 690px;
 
-      max-width: 700px;
+      margin-top: 26px;
 
-      margin-top: 24px;
-      padding: 17px 20px;
+      padding:
+        16px
+        19px;
 
-      border-left: 3px solid var(--gold);
+      border-left:
+        3px solid
+        var(--gold);
 
-      color: #e2ded2;
+      background:
+        rgba(0, 0, 0, .20);
 
-      background: rgba(0,0,0,.18);
+      color: #ddd9cd;
     }
 
-    .fairness-rule strong {
+    .final-rule strong {
       color: var(--gold-hot);
     }
 
 
-    /* ==================================================
+    /* =======================================================
        FOOTER
-       ================================================== */
+       ======================================================= */
 
     footer {
       display: flex;
+
       align-items: center;
       justify-content: space-between;
 
       gap: 30px;
 
-      padding: 34px 6px 0;
+      margin-top: 25px;
 
-      color: #58717d;
-      font-size: .65rem;
-      letter-spacing: .13em;
+      padding:
+        18px
+        18px
+        0;
+
+      color: #57737f;
+
+      font-size: .61rem;
+
+      letter-spacing: .14em;
+
       text-transform: uppercase;
     }
 
-    .footer-brand {
+    .footer-left {
       display: flex;
       align-items: center;
-      gap: 12px;
+
+      gap: 10px;
     }
 
-    .footer-logo {
-      transform: scale(.62);
-      transform-origin: left center;
-      width: 35px;
-      margin-right: -10px;
+    .footer-left .house-logo {
+      width: 32px;
+      height: 29px;
+
+      transform: scale(.63);
+
+      transform-origin:
+        left center;
+
+      margin-right: -13px;
+    }
+
+    .footer-line {
+      color: var(--gold-deep);
     }
 
 
-    /* ==================================================
+    /* =======================================================
        RESPONSIVE
-       ================================================== */
+       ======================================================= */
 
-    @media (max-width: 1100px) {
-      .command-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+    @media (max-width: 1150px) {
 
       .hero {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          minmax(0, 1fr);
       }
 
       .hero-copy {
-        padding-bottom: 20px;
+        padding-bottom: 0;
       }
 
-      .character-zone {
-        min-height: 480px;
+      .three-zone {
+        min-height: 520px;
       }
 
       .hero-avatar {
-        max-height: 500px;
+        left: 50%;
+        right: auto;
+
+        transform:
+          translateX(-50%);
+
+        object-position:
+          center bottom;
+
+        width: 620px;
+      }
+
+      .commands {
+        grid-template-columns:
+          repeat(3, 1fr);
       }
     }
 
 
-    @media (max-width: 750px) {
-      .page {
-        width: min(100% - 20px, 1360px);
+    @media (max-width: 760px) {
+
+      .site {
+        width:
+          min(
+            100% - 18px,
+            1440px
+          );
       }
 
-      .site-header {
+      .header {
         align-items: flex-start;
+
         flex-direction: column;
       }
 
       .nav {
         width: 100%;
-        justify-content: space-between;
-        gap: 10px;
+
+        justify-content:
+          space-between;
+
+        gap: 9px;
       }
 
-      .nav-item {
-        font-size: .58rem;
-        letter-spacing: .08em;
+      .nav span {
+        font-size: .55rem;
+
+        letter-spacing: .07em;
+      }
+
+      .hero-copy {
+        padding:
+          50px
+          22px
+          0;
       }
 
       h1 {
-        font-size: clamp(3.5rem, 15vw, 5rem);
+        font-size:
+          clamp(
+            3.7rem,
+            15vw,
+            5.1rem
+          );
       }
 
-      .command-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .three-zone {
+        min-height: 450px;
       }
 
-      .chapter {
+      .three-zone::before {
+        width: 390px;
+        height: 390px;
+      }
+
+      .three-zone::after {
+        width: 300px;
+        height: 300px;
+      }
+
+      .hero-avatar {
+        width: 480px;
+
+        max-width: 110%;
+        max-height: 480px;
+      }
+
+      .commands {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .rules-intro {
         grid-template-columns: 1fr;
-        gap: 12px;
+
+        gap: 15px;
+
+        padding:
+          55px
+          15px
+          25px;
+      }
+
+      .rule-grid {
+        grid-template-columns: 1fr;
       }
 
       .fairness {
-        padding: 32px 24px;
+        padding:
+          34px
+          24px;
       }
     }
 
 
     @media (max-width: 480px) {
+
       .identity {
         align-items: flex-start;
       }
 
       .house-logo {
-        transform: scale(.85);
-        transform-origin: top left;
+        transform:
+          scale(.83);
+
+        transform-origin:
+          left top;
       }
 
-      .house-tagline {
-        max-width: 245px;
-        line-height: 1.6;
+      .tagline {
+        max-width: 235px;
+
+        line-height: 1.55;
       }
 
-      .hero-copy {
-        padding: 46px 18px 12px;
+      .commands {
+        grid-template-columns: 1fr;
       }
 
-      .character-zone {
-        min-height: 380px;
+      .three-zone {
+        min-height: 390px;
       }
 
       .hero-avatar {
-        width: 400px;
-        max-height: 410px;
-      }
-
-      .command-grid {
-        grid-template-columns: 1fr;
+        width: 415px;
       }
 
       footer {
         align-items: flex-start;
+
         flex-direction: column;
       }
     }
@@ -817,565 +1562,692 @@
 </head>
 
 
+
 <body>
 
-  <div class="page">
+<div class="site">
 
 
-    <!-- ==================================================
-         HEADER
-         ================================================== -->
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
 
-    <header class="site-header">
+  <header class="header">
 
-      <div class="identity">
+    <div class="identity">
 
-        <div class="house-logo" aria-label="The House logo">
-          <span class="bar top-bar"></span>
-          <span class="bar left-bar"></span>
-          <span class="bar right-bar"></span>
+      <div class="house-logo" aria-label="The House">
+        <span class="logo-top"></span>
+        <span class="logo-left"></span>
+        <span class="logo-right"></span>
+      </div>
+
+      <div>
+
+        <div class="house-name">
+          THE HOUSE
         </div>
 
-        <div>
-          <div class="house-name">THE HOUSE</div>
+        <div class="tagline">
+          AUTHORITY IS EARNED. THE TOP IS TAKEN.
+        </div>
 
-          <div class="house-tagline">
-            AUTHORITY IS EARNED. THE TOP IS TAKEN.
-          </div>
+      </div>
+
+    </div>
+
+
+    <nav class="nav" aria-label="Site navigation">
+
+      <span
+        class="nav-future"
+        aria-disabled="true">
+        SYSTEM
+      </span>
+
+      <span
+        class="nav-future"
+        aria-disabled="true">
+        LEADERBOARD
+      </span>
+
+      <span class="nav-current">
+        RULES
+      </span>
+
+      <span
+        class="nav-future"
+        aria-disabled="true">
+        ARCHIVE
+      </span>
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+
+    <!-- ===================================================
+         HERO
+         =================================================== -->
+
+    <section class="hero">
+
+      <div class="hero-copy">
+
+        <div class="eyebrow">
+          THE HOUSE
+        </div>
+
+        <h1>
+          Authority<br>
+          <span class="gold">
+            Dealer Rules
+          </span>
+        </h1>
+
+        <div class="hero-copy-line"></div>
+
+        <p class="hero-lead">
+
+          Authority is the stream’s persistent viewer currency.
+
+          Claim it. Wager it. Rise through the ranks.
+
+          Everyone enters beneath someone.
+
+          <strong>
+            How high you climb is up to you.
+          </strong>
+
+        </p>
+
+        <div class="hero-rule">
+
+          <strong>
+            If Authority moves,
+          </strong>
+
+          there should be a record explaining why.
+
         </div>
 
       </div>
 
 
-      <nav class="nav" aria-label="Site navigation">
 
-        <span class="nav-item nav-future" aria-disabled="true">
-          SYSTEM
-        </span>
+      <div class="three-zone">
 
-        <span class="nav-item nav-future" aria-disabled="true">
-          LEADERBOARD
-        </span>
+        <div class="three-backlight"></div>
 
-        <span class="nav-item nav-active">
-          RULES
-        </span>
+        <div class="three-light-left"></div>
+        <div class="three-light-right"></div>
 
-        <span class="nav-item nav-future" aria-disabled="true">
-          ARCHIVE
-        </span>
+        <img
+          src="three-avatar.png"
+          class="hero-avatar"
+          alt="Three"
+        >
 
-      </nav>
+        <div class="three-fade"></div>
 
-    </header>
+      </div>
+
+    </section>
 
 
 
-    <!-- ==================================================
-         HERO
-         ================================================== -->
+    <!-- ===================================================
+         COMMAND DECK
+         =================================================== -->
 
-    <main>
+    <section class="command-deck">
 
-      <section class="hero">
+      <div class="deck-header">
 
-        <div class="hero-copy">
+        <div class="deck-title">
+          Getting Started
+        </div>
 
-          <div class="eyebrow">
-            Official Rules
+        <div class="deck-sub">
+          Essential Commands
+        </div>
+
+      </div>
+
+
+      <div class="commands">
+
+        <div class="command">
+          <div class="command-name">
+            !claim
           </div>
 
-          <h1>
-            Authority<br>
-            <span class="gold">Dealer Rules</span>
-          </h1>
+          <div class="command-copy">
+            Claim Authority when eligible.
+          </div>
+        </div>
 
-          <p class="hero-lead">
-            Authority is the stream’s persistent viewer currency.
-            Claim it. Wager it. Rise through the ranks.
-            Every viewer starts somewhere —
-            <strong>where you finish is up to you.</strong>
-          </p>
 
-          <div class="hero-rule">
-            <strong>If Authority moves,</strong>
-            there should be a record explaining why.
+        <div class="command">
+          <div class="command-name">
+            !authority
           </div>
 
+          <div class="command-copy">
+            Check your current Authority balance.
+          </div>
         </div>
 
 
-        <div class="character-zone">
+        <div class="command">
+          <div class="command-name">
+            !rank
+          </div>
 
-          <div class="character-glow"></div>
-
-          <img
-            class="hero-avatar"
-            src="three-avatar.png"
-            alt="Three"
-          >
-
+          <div class="command-copy">
+            See where you currently stand.
+          </div>
         </div>
 
-      </section>
 
+        <div class="command">
+          <div class="command-name">
+            !bet yes &lt;amount&gt;
+          </div>
 
-
-      <!-- ==================================================
-           COMMANDS
-           ================================================== -->
-
-      <section class="commands-section">
-
-        <div class="section-kicker">
-          Enter The House
+          <div class="command-copy">
+            Wager Authority on YES while betting is open.
+          </div>
         </div>
 
-        <h2 class="section-heading">
-          Core Commands
+
+        <div class="command">
+          <div class="command-name">
+            !bet no &lt;amount&gt;
+          </div>
+
+          <div class="command-copy">
+            Wager Authority on NO while betting is open.
+          </div>
+        </div>
+
+
+        <div class="command">
+          <div class="command-name">
+            !rules
+          </div>
+
+          <div class="command-copy">
+            Return to the official Authority Dealer rules.
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         RULES INTRO
+         =================================================== -->
+
+    <section class="rules-intro">
+
+      <div>
+
+        <div class="section-small">
+          The Rules
+        </div>
+
+        <h2>
+          Know the system.
         </h2>
 
-        <p class="section-intro">
-          Everything you need to begin earning Authority and taking part.
+      </div>
+
+      <p>
+        Authority Dealer is persistent.
+        The system follows the account behind the name,
+        records important events,
+        and protects game-changing actions from accidental duplication.
+      </p>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         MAIN RULE GRID
+         =================================================== -->
+
+    <section class="rule-grid">
+
+
+      <article class="rule">
+
+        <h3>
+          Authority & Identity
+        </h3>
+
+        <p>
+          Authority persists between streams.
+          Your balance and rank belong to your
+          <span class="gold">
+            stable Kick account ID
+          </span>,
+          not only your visible username.
         </p>
 
+        <p>
+          Usernames are stored as readable snapshots.
+          Changing your display name does not create
+          a new Authority identity.
+        </p>
 
-        <div class="command-grid">
+      </article>
 
-          <div class="command">
-            <div class="command-name">!claim</div>
-            <div class="command-description">
-              Claim Authority when eligible.
-            </div>
-          </div>
 
-          <div class="command">
-            <div class="command-name">!authority</div>
-            <div class="command-description">
-              Check your current Authority balance.
-            </div>
-          </div>
 
-          <div class="command">
-            <div class="command-name">!rank</div>
-            <div class="command-description">
-              See where you currently stand.
-            </div>
-          </div>
+      <article class="rule">
 
-          <div class="command">
-            <div class="command-name">!bet yes &lt;amount&gt;</div>
-            <div class="command-description">
-              Wager Authority on YES while a market is open.
-            </div>
-          </div>
+        <h3>
+          Claims
+        </h3>
 
-          <div class="command">
-            <div class="command-name">!bet no &lt;amount&gt;</div>
-            <div class="command-description">
-              Wager Authority on NO while a market is open.
-            </div>
-          </div>
+        <p>
+          Use <code>!claim</code>
+          when eligible.
+        </p>
 
-          <div class="command">
-            <div class="command-name">!rules</div>
-            <div class="command-description">
-              Return to the official Authority Dealer rules.
-            </div>
-          </div>
+        <p>
+          Claims have a cooldown.
+          A claim made too early is rejected
+          and no Authority is added.
+        </p>
+
+        <p>
+          Valid identified claim attempts are
+          recorded by Authority Dealer.
+        </p>
+
+      </article>
+
+
+
+      <article class="rule">
+
+        <h3>
+          Betting
+        </h3>
+
+        <p>
+          Betting opportunities open and close
+          throughout the stream.
+        </p>
+
+        <p>
+          Use
+          <code>!bet yes &lt;amount&gt;</code>
+          or
+          <code>!bet no &lt;amount&gt;</code>.
+        </p>
+
+        <p>
+          A wager can be rejected if betting is closed,
+          you lack enough Authority,
+          you already wagered on that event,
+          or the command is invalid.
+        </p>
+
+        <p class="safe">
+          Rejected wagers do not deduct Authority.
+        </p>
+
+      </article>
+
+
+
+      <article class="rule">
+
+        <h3>
+          Resolution
+        </h3>
+
+        <p>
+          Accepted wagers settle only after
+          the outcome is resolved.
+        </p>
+
+        <p>
+          Opening, closing, resolution,
+          winning wagers and losing wagers
+          are recorded by Authority Dealer.
+        </p>
+
+        <p>
+          Once resolved,
+          the same betting event cannot be settled again.
+        </p>
+
+      </article>
+
+
+
+      <article class="rule">
+
+        <h3>
+          Viewer 1v1
+        </h3>
+
+        <p>
+          Viewer 1v1 redemptions enter
+          the persistent challenger queue.
+        </p>
+
+        <p>
+          <span class="gold">
+            Viewer wins:
+          </span>
+          +75,000 Authority.
+        </p>
+
+        <p>
+          <span class="gold">
+            Three wins:
+          </span>
+          no Authority prize.
+        </p>
+
+        <p>
+          The prize belongs to the active challenge
+          and is awarded automatically when resolved.
+        </p>
+
+      </article>
+
+
+
+      <article class="rule">
+
+        <h3>
+          Run It Back!
+        </h3>
+
+        <p>
+          Run It Back! uses the same
+          persistent challenger system.
+        </p>
+
+        <p>
+          <span class="gold">
+            Viewer wins:
+          </span>
+          +250,000 Authority.
+        </p>
+
+        <p>
+          <span class="gold">
+            Three wins:
+          </span>
+          no Authority prize.
+        </p>
+
+        <p>
+          Authority Dealer determines
+          the appropriate payout from
+          the active challenge.
+        </p>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         OVERDELEGATED FEATURE
+         =================================================== -->
+
+    <section class="overdelegated">
+
+      <div class="overdelegated-copy">
+
+        <div class="section-small">
+          The House Can Be Generous
+        </div>
+
+        <h3>
+          Overdelegated
+        </h3>
+
+        <p>
+          When Overdelegated lands,
+          every eligible viewer receives
+          <span class="gold">
+            +100,000 Authority.
+          </span>
+        </p>
+
+        <p>
+          Eligibility depends on Authority Dealer
+          identifying your Kick account during the
+          <span class="gold">
+            current Authority Session.
+          </span>
+        </p>
+
+        <p>
+          Recognized participation can include:
+        </p>
+
+        <ul>
+          <li>ordinary Kick chat activity</li>
+          <li>Authority Dealer commands</li>
+          <li>betting activity</li>
+          <li>Channel Reward activity</li>
+          <li>challenger activity</li>
+        </ul>
+
+        <div class="cyan-note">
+
+          To guarantee eligibility,
+          interact with chat or Authority Dealer
+          at least once during the current session.
 
         </div>
 
-      </section>
+      </div>
 
+    </section>
 
 
-      <!-- ==================================================
-           RULES
-           ================================================== -->
 
-      <section class="rules">
+    <!-- ===================================================
+         SECOND RULE GRID
+         =================================================== -->
 
+    <section
+      class="rule-grid"
+      style="margin-top: 13px;">
 
-        <div class="chapter">
 
-          <div class="chapter-title">
-            Authority & Identity
-          </div>
+      <article class="rule">
 
-          <div class="chapter-body">
+        <h3>
+          Silent Viewers
+        </h3>
 
-            <p>
-              Authority persists between streams.
-              Your balance and rank belong to your
-              <span class="gold-text">stable Kick account ID</span>,
-              not only your visible username.
-            </p>
+        <p>
+          Simply having the stream open does not guarantee
+          that Kick exposes your identity to Authority Dealer.
+        </p>
 
-            <p>
-              Usernames are stored as readable snapshots.
-              If your display name changes, your underlying Authority account
-              and history remain tied to the same stable identity.
-            </p>
+        <p>
+          A completely silent viewer who never generates
+          an identifiable interaction cannot be guaranteed
+          an Overdelegated payout.
+        </p>
 
-          </div>
+        <p>
+          The system does not pretend to identify
+          accounts the platform never revealed.
+        </p>
 
-        </div>
+      </article>
 
 
 
-        <div class="chapter">
+      <article class="rule">
 
-          <div class="chapter-title">
-            Claims
-          </div>
+        <h3>
+          Ranks, Wraith & Paragon
+        </h3>
 
-          <div class="chapter-body">
+        <p>
+          Authority-changing events can automatically
+          trigger progression.
+        </p>
 
-            <p>
-              Use <code>!claim</code> when eligible.
-            </p>
+        <p>
+          Rank, Wraith and Paragon state are evaluated
+          after qualifying Authority changes.
+        </p>
 
-            <p>
-              Claims are subject to a cooldown.
-              Attempting to claim too early is rejected,
-              and no Authority is added.
-            </p>
+        <p>
+          You do not need to type
+          <code>!rank</code>
+          for legitimate progression to be recognized.
+        </p>
 
-            <p>
-              Valid identified claim attempts are recorded by Authority Dealer.
-            </p>
+      </article>
 
-          </div>
 
-        </div>
 
+      <article class="rule">
 
+        <h3>
+          Channel Rewards & Challenges
+        </h3>
 
-        <div class="chapter">
+        <p>
+          Certain Channel Rewards create
+          persistent challenger entries.
+        </p>
 
-          <div class="chapter-title">
-            Betting
-          </div>
+        <p>
+          Queue state, challenge starts,
+          resolutions, cancellations and prize events
+          are preserved.
+        </p>
 
-          <div class="chapter-body">
+        <p>
+          Duplicate redemption protection prevents
+          the same redemption from creating
+          another legitimate challenger.
+        </p>
 
-            <p>
-              Betting opportunities open and close throughout the stream.
-            </p>
+      </article>
 
-            <p>
-              Use
-              <code>!bet yes &lt;amount&gt;</code>
-              or
-              <code>!bet no &lt;amount&gt;</code>.
-            </p>
 
-            <p>
-              A wager may be rejected if betting is not currently open,
-              you lack enough Authority, you already wagered on the current event,
-              or the command is invalid.
-            </p>
 
-            <p class="safe-text">
-              Rejected wagers do not deduct Authority.
-            </p>
+      <article class="rule">
 
-          </div>
+        <h3>
+          Corrections & Refunds
+        </h3>
 
-        </div>
+        <p>
+          If a legitimate missed Authority payment
+          is confirmed,
+          Authority Dealer includes an audited
+          correction system.
+        </p>
 
+        <p>
+          Refunds are
+          <span class="safe">
+            positive-only corrections
+          </span>,
+          not a general-purpose balance editor.
+        </p>
 
+        <p>
+          Corrections record the target,
+          exact amount, reason,
+          balance before and after,
+          execution identity,
+          and operator information when available.
+        </p>
 
-        <div class="chapter">
+      </article>
 
-          <div class="chapter-title">
-            Resolution
-          </div>
 
-          <div class="chapter-body">
 
-            <p>
-              Accepted wagers are settled only after the outcome has been resolved.
-            </p>
+      <article class="rule">
 
-            <p>
-              Opening, closing, resolution, winning wagers,
-              and losing wagers are recorded by Authority Dealer.
-            </p>
+        <h3>
+          Audit & Fairness
+        </h3>
 
-            <p>
-              Once resolved, the same betting event cannot be settled again.
-            </p>
+        <p>
+          Authority Dealer keeps persistent records
+          for important game activity.
+        </p>
 
-          </div>
+        <ul>
+          <li>successful and rejected claims</li>
+          <li>accepted and rejected wagers</li>
+          <li>betting lifecycle events</li>
+          <li>wager settlements</li>
+          <li>rank progression</li>
+          <li>challenge events and payouts</li>
+          <li>Overdelegated payouts</li>
+          <li>refunds and corrections</li>
+        </ul>
 
-        </div>
+      </article>
 
 
 
-        <div class="chapter">
+      <article class="rule">
 
-          <div class="chapter-title">
-            Viewer 1v1
-          </div>
+        <h3>
+          Your Identity Persists
+        </h3>
 
-          <div class="chapter-body">
+        <p>
+          The readable name attached to your account can change.
+          The underlying identity Authority Dealer trusts does not
+          depend on that display name alone.
+        </p>
 
-            <p>
-              Viewer 1v1 redemptions enter the persistent challenger queue.
-            </p>
+        <p>
+          That protects balances,
+          game history,
+          payouts and corrections
+          from username changes and ambiguous name matching.
+        </p>
 
-            <p>
-              <span class="gold-text">Viewer wins:</span>
-              +75,000 Authority.
-            </p>
+      </article>
 
-            <p>
-              <span class="gold-text">Three wins:</span>
-              no Authority prize.
-            </p>
+    </section>
 
-            <p>
-              The payout is attached to the active challenge itself
-              and is awarded automatically when the challenge is resolved.
-            </p>
 
-          </div>
 
-        </div>
+    <!-- ===================================================
+         FINAL FAIRNESS SECTION
+         =================================================== -->
 
+    <section class="fairness">
 
+      <div class="fairness-content">
 
-        <div class="chapter">
-
-          <div class="chapter-title">
-            Run It Back!
-          </div>
-
-          <div class="chapter-body">
-
-            <p>
-              Run It Back! uses the same persistent challenger system.
-            </p>
-
-            <p>
-              <span class="gold-text">Viewer wins:</span>
-              +250,000 Authority.
-            </p>
-
-            <p>
-              <span class="gold-text">Three wins:</span>
-              no Authority prize.
-            </p>
-
-            <p>
-              Authority Dealer determines the correct prize from the active
-              challenge. The operator does not manually choose the payout amount.
-            </p>
-
-          </div>
-
-        </div>
-
-
-
-        <div class="chapter">
-
-          <div class="chapter-title">
-            Overdelegated
-          </div>
-
-          <div class="chapter-body">
-
-            <p>
-              When Overdelegated lands, every eligible viewer receives
-              <span class="gold-text">+100,000 Authority</span>.
-            </p>
-
-            <p>
-              Eligibility depends on Authority Dealer identifying your Kick account
-              during the
-              <span class="gold-text">current Authority Session</span>.
-            </p>
-
-            <p>
-              Recognized activity can include:
-            </p>
-
-            <ul>
-              <li>ordinary Kick chat activity</li>
-              <li>Authority Dealer commands</li>
-              <li>betting activity</li>
-              <li>Channel Reward activity</li>
-              <li>challenger activity</li>
-            </ul>
-
-            <div class="info-note">
-              To guarantee eligibility, interact with chat or Authority Dealer
-              at least once during the current Authority Session.
-            </div>
-
-          </div>
-
-        </div>
-
-
-
-        <div class="chapter">
-
-          <div class="chapter-title">
-            Silent Viewers
-          </div>
-
-          <div class="chapter-body">
-
-            <p>
-              Simply having the stream open does not guarantee that Kick exposes
-              your account identity to Authority Dealer.
-            </p>
-
-            <p>
-              Completely silent viewers who never generate an identifiable
-              interaction cannot be guaranteed an Overdelegated payout.
-            </p>
-
-            <p>
-              This prevents the system from pretending it can identify accounts
-              the platform never actually revealed.
-            </p>
-
-          </div>
-
-        </div>
-
-
-
-        <div class="chapter">
-
-          <div class="chapter-title">
-            Ranks, Wraith & Paragon
-          </div>
-
-          <div class="chapter-body">
-
-            <p>
-              Authority-changing events can automatically trigger progression.
-            </p>
-
-            <p>
-              Rank, Wraith, and Paragon state are evaluated by the backend
-              after qualifying Authority changes.
-            </p>
-
-            <p>
-              You do not need to type <code>!rank</code>
-              for legitimate progression to be recognized.
-            </p>
-
-          </div>
-
-        </div>
-
-
-
-        <div class="chapter">
-
-          <div class="chapter-title">
-            Channel Rewards & Challenges
-          </div>
-
-          <div class="chapter-body">
-
-            <p>
-              Certain Channel Rewards create persistent challenger entries.
-            </p>
-
-            <p>
-              Queue state, challenge starts, resolutions,
-              cancellations, and prize events are preserved.
-            </p>
-
-            <p>
-              Duplicate redemption protection prevents the same reward redemption
-              from creating another legitimate challenger entry.
-            </p>
-
-          </div>
-
-        </div>
-
-
-
-        <div class="chapter">
-
-          <div class="chapter-title">
-            Corrections & Refunds
-          </div>
-
-          <div class="chapter-body">
-
-            <p>
-              If a legitimate missed Authority payment is confirmed,
-              Authority Dealer includes an audited correction system.
-            </p>
-
-            <p>
-              Refunds are
-              <span class="safe-text">positive-only corrections</span>,
-              not a general-purpose balance editor.
-            </p>
-
-            <p>
-              A correction records the target account,
-              exact amount, reason, balance before and after,
-              execution identity, and operator information when available.
-            </p>
-
-          </div>
-
-        </div>
-
-
-
-        <div class="chapter">
-
-          <div class="chapter-title">
-            Audit & Fairness
-          </div>
-
-          <div class="chapter-body">
-
-            <p>
-              Authority Dealer keeps persistent records for important game activity.
-            </p>
-
-            <ul>
-              <li>successful and rejected claims</li>
-              <li>accepted and rejected wagers</li>
-              <li>betting lifecycle events</li>
-              <li>wager settlements</li>
-              <li>rank progression</li>
-              <li>challenge activity and payouts</li>
-              <li>Overdelegated payouts</li>
-              <li>refunds and corrections</li>
-            </ul>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-
-      <!-- ==================================================
-           FAIRNESS
-           ================================================== -->
-
-      <section class="fairness">
-
-        <div class="section-kicker">
+        <div class="section-small">
           The Ledger
         </div>
 
@@ -1384,54 +2256,72 @@
         </h2>
 
         <p>
-          If something appears wrong, say what happened.
-          Where possible, the operator can compare Authority history,
-          wagers, challenge records, payouts, and corrections against
-          the persistent state maintained by Authority Dealer.
+          If something appears wrong,
+          explain what happened.
+          Where possible,
+          Authority history, wagers,
+          challenge records,
+          payouts and corrections can be compared
+          against the system’s persisted record.
         </p>
 
         <p>
           If a legitimate missed payment is confirmed,
-          the exact amount can be corrected through the audited refund system
-          instead of silently rewriting somebody’s balance.
+          the exact amount can be corrected through
+          the audited refund system instead of
+          silently rewriting somebody’s balance.
         </p>
 
-        <div class="fairness-rule">
-          <strong>The House rule:</strong>
-          if Authority moves, the system should be able to explain why.
+        <div class="final-rule">
+
+          <strong>
+            The House rule:
+          </strong>
+
+          if Authority moves,
+          the system should be able to explain why.
+
         </div>
-
-      </section>
-
-    </main>
-
-
-
-    <!-- ==================================================
-         FOOTER
-         ================================================== -->
-
-    <footer>
-
-      <div class="footer-brand">
-
-        <div class="house-logo footer-logo">
-          <span class="bar top-bar"></span>
-          <span class="bar left-bar"></span>
-          <span class="bar right-bar"></span>
-        </div>
-
-        <span>The House</span>
 
       </div>
 
-      <div>
-        Authority Dealer
+    </section>
+
+  </main>
+
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer>
+
+    <div class="footer-left">
+
+      <div class="house-logo">
+        <span class="logo-top"></span>
+        <span class="logo-left"></span>
+        <span class="logo-right"></span>
       </div>
 
-    </footer>
+      <span>
+        The House
+      </span>
 
-  </div>
+    </div>
+
+    <div class="footer-line">
+      AUTHORITY IS EARNED. THE TOP IS TAKEN.
+    </div>
+
+    <div>
+      Authority Dealer
+    </div>
+
+  </footer>
+
+</div>
 
 </body>
 </html>
