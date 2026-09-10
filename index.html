@@ -3,38 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#05090d">
+  <meta name="theme-color" content="#07090c">
+
   <title>Authority Dealer Rules | The House</title>
 
   <style>
     :root {
-      --bg: #04070a;
-      --bg2: #071018;
-      --panel: #08131b;
-      --panel2: #0b1821;
-      --panel3: #101d26;
+      --bg: #07090c;
+      --bg-soft: #0b0f14;
+      --panel: #10141a;
+      --panel-soft: #141920;
 
-      --text: #f0f3f5;
-      --muted: #8fa4b1;
-      --muted2: #5f7886;
+      --text: #f1f1ee;
+      --muted: #9da6ad;
 
-      --gold: #f3c64d;
-      --gold2: #b98720;
-      --goldSoft: rgba(243, 198, 77, 0.14);
+      --gold: #d8aa45;
+      --gold-bright: #f0c65a;
 
-      --blue: #19cfff;
-      --blue2: #0d7697;
-      --blueSoft: rgba(25, 207, 255, 0.12);
+      --blue: #39b6dd;
+      --blue-soft: rgba(57, 182, 221, 0.10);
 
-      --green: #4dffbd;
-      --red: #ff675f;
+      --green: #7ed3a0;
 
-      --line: rgba(102, 207, 237, 0.28);
-      --lineGold: rgba(243, 198, 77, 0.38);
-
-      --shadow:
-        0 0 0 1px rgba(32, 115, 140, 0.18),
-        0 18px 60px rgba(0, 0, 0, 0.5);
+      --border: #242b33;
+      --border-soft: rgba(255,255,255,0.05);
     }
 
     * {
@@ -47,638 +39,410 @@
 
     body {
       margin: 0;
-      color: var(--text);
-      font-family: "Segoe UI", Inter, Arial, Helvetica, sans-serif;
-      line-height: 1.65;
-      background:
-        linear-gradient(rgba(3, 8, 12, 0.92), rgba(3, 8, 12, 0.97)),
-        repeating-linear-gradient(
-          90deg,
-          transparent 0,
-          transparent 79px,
-          rgba(25, 207, 255, 0.035) 80px
-        ),
-        repeating-linear-gradient(
-          0deg,
-          transparent 0,
-          transparent 79px,
-          rgba(25, 207, 255, 0.025) 80px
-        ),
-        radial-gradient(circle at top center, #0c1d29 0%, #05090d 55%, #020406 100%);
       min-height: 100vh;
-    }
+      color: var(--text);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
       background:
-        radial-gradient(circle at 15% 0%, rgba(25, 207, 255, 0.08), transparent 26%),
-        radial-gradient(circle at 85% 8%, rgba(243, 198, 77, 0.07), transparent 24%);
-      z-index: -1;
+        radial-gradient(circle at 80% 4%, rgba(57,182,221,.10), transparent 22%),
+        radial-gradient(circle at 18% 0%, rgba(216,170,69,.07), transparent 18%),
+        linear-gradient(180deg, #07090c 0%, #090c10 45%, #06080b 100%);
     }
 
     a {
       color: inherit;
     }
 
-    .site-shell {
-      width: min(1500px, calc(100% - 28px));
+    .page {
+      width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 14px 0 50px;
+      padding: 26px 0 70px;
     }
 
-    /* TOP BAR */
+    /* -------------------------------------------------- */
+    /* HEADER                                             */
+    /* -------------------------------------------------- */
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 30;
+    .brandbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      padding: 13px 18px;
-      margin-bottom: 16px;
-      background: rgba(4, 10, 15, 0.92);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(25, 207, 255, 0.22);
-      border-top: 2px solid rgba(25, 207, 255, 0.45);
-      box-shadow:
-        0 0 32px rgba(0, 174, 229, 0.08),
-        0 12px 40px rgba(0,0,0,0.4);
-      clip-path: polygon(
-        0 0,
-        100% 0,
-        100% calc(100% - 11px),
-        calc(100% - 11px) 100%,
-        11px 100%,
-        0 calc(100% - 11px)
-      );
+      gap: 32px;
+
+      padding: 14px 0 18px;
+      margin-bottom: 28px;
+
+      border-bottom: 1px solid var(--border);
     }
 
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      min-width: 220px;
+      color: var(--gold-bright);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .24em;
     }
 
-    .brand-mark {
-      width: 40px;
-      height: 40px;
-      position: relative;
-      flex: 0 0 auto;
-      filter: drop-shadow(0 0 10px rgba(243, 198, 77, 0.28));
-    }
-
-    .brand-mark::before {
-      content: "";
-      position: absolute;
-      inset: 2px 4px 4px;
-      background: linear-gradient(180deg, #ffe37d, #d99e1f);
-      clip-path: polygon(
-        0 0,
-        100% 0,
-        68% 28%,
-        55% 28%,
-        55% 100%,
-        38% 78%,
-        38% 28%,
-        23% 28%
-      );
-    }
-
-    .brand-copy strong {
-      display: block;
-      letter-spacing: 0.22em;
-      font-size: 0.92rem;
-      color: #f7f7f7;
-    }
-
-    .brand-copy span {
-      display: block;
+    .brand-tagline {
+      margin-top: 5px;
       color: var(--muted);
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
+      font-size: .66rem;
+      letter-spacing: .13em;
       text-transform: uppercase;
-      margin-top: 3px;
     }
 
-    .nav {
+    .site-nav {
       display: flex;
       align-items: center;
-      gap: 24px;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #78909c;
+      gap: 28px;
     }
 
-    .nav span {
+    .nav-item {
       position: relative;
-      padding: 6px 0;
+      padding: 8px 0;
+
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-decoration: none;
     }
 
-    .nav .active {
-      color: var(--gold);
+    .nav-active {
+      color: var(--gold-bright);
     }
 
-    .nav .active::after {
+    .nav-active::after {
       content: "";
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
+
       height: 2px;
       background: var(--gold);
-      box-shadow: 0 0 12px rgba(243, 198, 77, 0.7);
     }
 
-    .system-status {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 13px;
-      border: 1px solid rgba(77, 255, 189, 0.38);
-      background: rgba(12, 50, 45, 0.24);
-      color: var(--green);
-      font-size: 0.68rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      white-space: nowrap;
+    .nav-disabled {
+      color: #596169;
+      opacity: .62;
+      cursor: default;
+      user-select: none;
     }
 
-    .system-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 14px var(--green);
-    }
-
-    /* HERO */
+    /* -------------------------------------------------- */
+    /* HERO                                               */
+    /* -------------------------------------------------- */
 
     .hero {
       position: relative;
       overflow: hidden;
+
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 44px;
+      align-items: center;
+
       min-height: 500px;
-      border: 1px solid rgba(25, 207, 255, 0.24);
-      box-shadow: var(--shadow);
+      padding: 42px;
+
+      border: 1px solid var(--border);
+      border-radius: 20px;
+
       background:
-        linear-gradient(90deg, rgba(3, 10, 15, 0.98) 0%, rgba(4, 13, 19, 0.94) 54%, rgba(4, 14, 20, 0.8) 100%);
-      clip-path: polygon(
-        0 0,
-        calc(100% - 28px) 0,
-        100% 28px,
-        100% calc(100% - 24px),
-        calc(100% - 24px) 100%,
-        0 100%
-      );
+        linear-gradient(135deg, rgba(16,20,26,.98), rgba(8,12,17,.98));
+
+      box-shadow:
+        0 22px 70px rgba(0,0,0,.35),
+        inset 0 1px 0 var(--border-soft);
     }
 
     .hero::before {
       content: "";
       position: absolute;
-      inset: 0;
+      right: -120px;
+      top: -120px;
+
+      width: 580px;
+      height: 580px;
+      border-radius: 50%;
+
       background:
-        linear-gradient(90deg, transparent 49.8%, rgba(25, 207, 255, 0.12) 50%, transparent 50.2%),
-        radial-gradient(circle at 82% 42%, rgba(243, 198, 77, 0.15), transparent 26%),
-        linear-gradient(135deg, transparent 0 74%, rgba(25, 207, 255, 0.04) 74% 75%, transparent 75%);
+        radial-gradient(circle, rgba(57,182,221,.11), transparent 66%);
+
       pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: 13%;
+      bottom: 0;
+
+      width: 290px;
+      height: 1px;
+
+      background:
+        linear-gradient(90deg, transparent, rgba(57,182,221,.35), transparent);
     }
 
     .hero-copy {
       position: relative;
       z-index: 2;
-      padding: 58px 48px 50px;
     }
 
-    .hero-kicker {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 0.28em;
-      font-size: 0.8rem;
-      font-weight: 800;
+    .eyebrow {
       margin-bottom: 12px;
+
+      color: var(--gold);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .22em;
+      text-transform: uppercase;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(3.1rem, 7vw, 6.4rem);
-      line-height: 0.94;
-      letter-spacing: -0.05em;
-      max-width: 900px;
+
+      max-width: 720px;
+
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      line-height: .95;
+      letter-spacing: -.05em;
     }
 
-    h1 .gold {
-      color: var(--gold);
-      text-shadow: 0 0 24px rgba(243, 198, 77, 0.14);
+    h1 span {
+      color: var(--gold-bright);
     }
 
-    .hero-sub {
-      margin-top: 24px;
-      max-width: 750px;
-      color: #c7d0d5;
-      font-size: 1rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
+    .hero-copy > p {
+      max-width: 640px;
+      margin: 24px 0 0;
+
+      color: #c2c8cc;
+      font-size: 1.03rem;
     }
 
-    .hero-rule {
-      width: 220px;
-      height: 3px;
-      margin: 22px 0;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      box-shadow: 0 0 14px rgba(243, 198, 77, 0.5);
-    }
+    .house-rule {
+      margin-top: 28px;
+      padding: 18px 20px;
 
-    .hero-alert {
-      position: relative;
-      max-width: 740px;
-      padding: 19px 22px 19px 70px;
-      border: 1px solid rgba(243, 198, 77, 0.58);
+      border-left: 3px solid var(--gold);
+
       background:
-        linear-gradient(90deg, rgba(57, 43, 10, 0.36), rgba(15, 21, 25, 0.72));
-      box-shadow:
-        inset 0 0 22px rgba(243, 198, 77, 0.035),
-        0 0 24px rgba(243, 198, 77, 0.05);
-      clip-path: polygon(
-        12px 0,
-        100% 0,
-        100% calc(100% - 12px),
-        calc(100% - 12px) 100%,
-        0 100%,
-        0 12px
-      );
+        linear-gradient(
+          90deg,
+          rgba(216,170,69,.08),
+          rgba(216,170,69,.025)
+        );
+
+      color: #ddd8ca;
     }
 
-    .hero-alert::before {
-      content: "!";
-      position: absolute;
-      left: 19px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border: 2px solid var(--gold);
-      color: var(--gold);
-      font-weight: 900;
-      font-size: 1.15rem;
-      transform-origin: center;
-      rotate: 45deg;
+    .house-rule strong {
+      color: var(--gold-bright);
     }
 
-    .hero-alert::after {
-      content: "!";
-      position: absolute;
-      left: 29px;
-      top: 50%;
-      transform: translateY(-50%) rotate(-45deg);
-      color: var(--gold);
-      font-weight: 900;
-    }
+    /* -------------------------------------------------- */
+    /* AVATAR                                             */
+    /* -------------------------------------------------- */
 
-    .hero-alert .big {
-      color: var(--gold);
-      font-weight: 800;
-      letter-spacing: 0.04em;
-    }
-
-    .hero-tagline {
-      margin-top: 24px;
-      color: #819aa8;
-      font-size: 0.73rem;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-    }
-
-    .hero-tagline strong {
-      color: var(--gold);
-    }
-
-    /* HERO EMBLEM */
-
-    .hero-visual {
+    .avatar-wrap {
       position: relative;
-      display: grid;
-      place-items: center;
-      min-height: 500px;
-      overflow: hidden;
-    }
+      z-index: 2;
 
-    .hero-visual::before,
-    .hero-visual::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(243, 198, 77, 0.26);
-    }
-
-    .hero-visual::before {
-      width: 370px;
-      height: 370px;
-      box-shadow:
-        0 0 60px rgba(243, 198, 77, 0.1),
-        inset 0 0 60px rgba(243, 198, 77, 0.05);
-    }
-
-    .hero-visual::after {
-      width: 460px;
-      height: 460px;
-      border-color: rgba(25, 207, 255, 0.12);
-    }
-
-    .house-core {
-      position: relative;
-      z-index: 3;
-      width: 290px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle, rgba(243, 198, 77, 0.1), transparent 58%),
-        rgba(3, 7, 10, 0.75);
-      border: 1px solid rgba(243, 198, 77, 0.38);
-      box-shadow:
-        0 0 50px rgba(243, 198, 77, 0.14),
-        inset 0 0 50px rgba(25, 207, 255, 0.04);
-    }
-
-    .house-core::before,
-    .house-core::after {
-      content: "";
-      position: absolute;
-      inset: 15px;
-      border: 1px dashed rgba(25, 207, 255, 0.28);
-      border-radius: 50%;
-    }
-
-    .house-core::after {
-      inset: 38px;
-      border-color: rgba(243, 198, 77, 0.22);
-      rotate: 18deg;
-    }
-
-    .house-symbol {
-      width: 150px;
-      height: 150px;
-      position: relative;
-      filter: drop-shadow(0 0 18px rgba(243, 198, 77, 0.45));
-    }
-
-    .house-symbol::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, #fff0a1, var(--gold) 54%, #9c6912);
-      clip-path: polygon(
-        2% 8%,
-        98% 8%,
-        69% 38%,
-        58% 38%,
-        58% 92%,
-        43% 73%,
-        43% 38%,
-        29% 38%
-      );
-    }
-
-    .house-symbol::after {
-      content: "";
-      position: absolute;
-      inset: 27px 41px 44px;
-      background: #071018;
-      clip-path: polygon(50% 100%, 0 0, 100% 0);
-    }
-
-    .vertical-copy {
-      position: absolute;
-      right: 24px;
-      top: 82px;
-      color: rgba(124, 160, 176, 0.62);
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-size: 0.58rem;
-      line-height: 1.8;
-      text-align: right;
-    }
-
-    /* SECTION FRAME */
-
-    .section-frame {
-      margin-top: 16px;
-      border: 1px solid rgba(25, 207, 255, 0.22);
-      background:
-        linear-gradient(180deg, rgba(8, 20, 28, 0.97), rgba(5, 14, 20, 0.97));
-      box-shadow: var(--shadow);
-      clip-path: polygon(
-        16px 0,
-        100% 0,
-        100% calc(100% - 16px),
-        calc(100% - 16px) 100%,
-        0 100%,
-        0 16px
-      );
-    }
-
-    .section-head {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 16px 22px;
-      border-bottom: 1px solid rgba(25, 207, 255, 0.17);
-      background: rgba(8, 26, 36, 0.6);
+      align-items: flex-end;
+      justify-content: center;
+
+      min-height: 420px;
+    }
+
+    .avatar-wrap::before {
+      content: "";
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      border-radius: 50%;
+
+      border: 1px solid rgba(216,170,69,.14);
+
+      box-shadow:
+        0 0 80px rgba(216,170,69,.08),
+        inset 0 0 70px rgba(57,182,221,.04);
+    }
+
+    .avatar-glow {
+      position: absolute;
+
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+
+      background:
+        radial-gradient(circle, rgba(216,170,69,.16), transparent 52%),
+        radial-gradient(circle at 62% 42%, rgba(57,182,221,.11), transparent 68%);
+
+      filter: blur(12px);
+    }
+
+    .avatar {
+      position: relative;
+      z-index: 2;
+
+      width: 430px;
+      max-width: 100%;
+      max-height: 470px;
+
+      object-fit: contain;
+      object-position: center bottom;
+
+      filter:
+        drop-shadow(0 0 16px rgba(216,170,69,.10))
+        drop-shadow(0 22px 32px rgba(0,0,0,.50));
+    }
+
+    /* -------------------------------------------------- */
+    /* CORE COMMANDS                                      */
+    /* -------------------------------------------------- */
+
+    .quick-start {
+      margin-top: 24px;
+      padding: 30px;
+
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      background: var(--panel);
+
+      box-shadow:
+        inset 0 1px 0 var(--border-soft);
+    }
+
+    .section-label {
+      margin-bottom: 6px;
+
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
     }
 
     .section-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--gold);
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      margin: 0;
+
+      font-size: 1.8rem;
+      letter-spacing: -.02em;
     }
 
-    .slashes {
-      color: var(--gold);
-      letter-spacing: -0.16em;
-      font-weight: 900;
+    .section-intro {
+      margin-top: 8px;
+      color: var(--muted);
     }
-
-    .section-meta {
-      color: #5f8496;
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-    }
-
-    /* COMMANDS */
 
     .commands {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
-      padding: 16px;
-    }
-
-    .command-card {
-      position: relative;
-      min-height: 190px;
-      padding: 20px 15px 28px;
-      border: 1px solid rgba(25, 207, 255, 0.38);
-      background:
-        linear-gradient(180deg, rgba(8, 24, 33, 0.9), rgba(5, 14, 19, 0.95));
-      transition: transform 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
-      clip-path: polygon(
-        0 0,
-        calc(100% - 12px) 0,
-        100% 12px,
-        100% 100%,
-        0 100%
-      );
-    }
-
-    .command-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(243, 198, 77, 0.65);
-      box-shadow: 0 0 24px rgba(25, 207, 255, 0.08);
-    }
-
-    .command-icon {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 18px;
-      border: 1px solid rgba(25, 207, 255, 0.32);
-      color: var(--blue);
-      font-size: 1.25rem;
-      background: rgba(25, 207, 255, 0.05);
-    }
-
-    .command-card strong {
-      display: block;
-      color: var(--gold);
-      font-size: 1rem;
-      margin-bottom: 8px;
-      word-break: break-word;
-    }
-
-    .command-card p {
-      color: #c7d2d8;
-      font-size: 0.82rem;
-      margin: 0;
-      line-height: 1.45;
-    }
-
-    .command-foot {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 5px 10px;
-      display: flex;
-      justify-content: space-between;
-      border-top: 1px solid rgba(25, 207, 255, 0.15);
-      color: #5e9db8;
-      font-size: 0.56rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    /* RULE GRID */
-
-    .rules-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 14px;
-      margin-top: 16px;
+
+      margin-top: 22px;
     }
 
-    .rule-card {
-      position: relative;
-      padding: 24px 25px 29px;
+    .command {
+      padding: 18px;
+
+      border: 1px solid var(--border);
+      border-radius: 12px;
+
+      background: var(--panel-soft);
+
+      cursor: default;
+    }
+
+    .command strong {
+      display: block;
+      margin-bottom: 6px;
+
+      color: var(--gold-bright);
+
+      font-family: Consolas, Monaco, monospace;
+      font-size: .95rem;
+    }
+
+    .command span {
+      color: #c6ccd0;
+      font-size: .9rem;
+    }
+
+    /* -------------------------------------------------- */
+    /* RULES                                              */
+    /* -------------------------------------------------- */
+
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 18px;
+
+      margin-top: 22px;
+    }
+
+    .rule {
       min-height: 220px;
-      border: 1px solid rgba(25, 207, 255, 0.25);
+      padding: 26px;
+
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
       background:
-        linear-gradient(145deg, rgba(10, 27, 37, 0.97), rgba(5, 14, 20, 0.96));
-      box-shadow: inset 0 0 28px rgba(25, 207, 255, 0.025);
-      clip-path: polygon(
-        0 0,
-        calc(100% - 18px) 0,
-        100% 18px,
-        100% 100%,
-        14px 100%,
-        0 calc(100% - 14px)
-      );
+        linear-gradient(180deg, var(--panel), #0c1116);
+
+      box-shadow:
+        inset 0 1px 0 var(--border-soft);
     }
 
-    .rule-card.wide {
+    .rule.wide {
       grid-column: 1 / -1;
     }
 
-    .rule-number {
-      position: absolute;
-      top: 16px;
-      right: 18px;
-      color: #47798d;
-      font-size: 0.65rem;
-      letter-spacing: 0.17em;
-    }
-
-    .rule-kicker {
-      color: var(--gold);
-      text-transform: uppercase;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      font-size: 1.1rem;
+    .rule h2 {
       margin: 0 0 14px;
+
+      color: var(--gold-bright);
+
+      font-size: 1.24rem;
+      letter-spacing: -.01em;
     }
 
-    .rule-card p,
-    .rule-card li {
-      color: #c7d0d5;
-      font-size: 0.92rem;
+    .rule p,
+    .rule li {
+      color: #c2c7cb;
+      font-size: .94rem;
     }
 
-    .rule-card ul {
-      padding-left: 20px;
+    .rule ul {
       margin-bottom: 0;
+      padding-left: 20px;
     }
 
-    .rule-card li {
-      margin-bottom: 7px;
+    .rule li {
+      margin-bottom: 6px;
     }
 
-    .microcopy {
-      position: absolute;
-      left: 25px;
-      bottom: 10px;
-      color: #4da7c5;
-      font-size: 0.55rem;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-    }
+    .rule code {
+      padding: 2px 5px;
 
-    .gold-line {
-      height: 2px;
-      width: 68px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      margin: 11px 0 15px;
+      color: var(--gold-bright);
+
+      font-family: Consolas, Monaco, monospace;
+
+      background: rgba(216,170,69,.07);
+      border: 1px solid rgba(216,170,69,.15);
+      border-radius: 5px;
     }
 
     .highlight {
-      color: var(--gold);
+      color: var(--gold-bright);
       font-weight: 700;
     }
 
@@ -687,160 +451,117 @@
       font-weight: 700;
     }
 
-    .danger {
-      color: var(--red);
-      font-weight: 700;
+    .blue-note {
+      margin-top: 18px;
+      padding: 14px 16px;
+
+      border-left: 3px solid var(--blue);
+
+      background: var(--blue-soft);
+
+      color: #c8dce4;
     }
 
-    code {
-      color: #ffd968;
-      background: rgba(243, 198, 77, 0.07);
-      border: 1px solid rgba(243, 198, 77, 0.18);
-      border-radius: 4px;
-      padding: 2px 5px;
-      font-family: Consolas, Monaco, monospace;
-    }
+    /* -------------------------------------------------- */
+    /* FOOTER                                             */
+    /* -------------------------------------------------- */
 
-    /* SPECIAL ALERT */
-
-    .system-note {
-      margin-top: 16px;
-      padding: 18px 22px;
-      border-left: 3px solid var(--gold);
-      border-right: 1px solid rgba(243, 198, 77, 0.16);
-      border-top: 1px solid rgba(243, 198, 77, 0.16);
-      border-bottom: 1px solid rgba(243, 198, 77, 0.16);
-      background: rgba(54, 41, 10, 0.18);
-      color: #ded7c6;
-    }
-
-    /* FOOTER */
-
-    footer {
-      margin-top: 16px;
-      padding: 18px 22px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
+    .footer {
+      display: flex;
+      justify-content: space-between;
       gap: 20px;
-      border: 1px solid rgba(25, 207, 255, 0.2);
-      background: #061018;
-      color: #607f8f;
-      font-size: 0.6rem;
+
+      margin-top: 28px;
+      padding-top: 22px;
+
+      border-top: 1px solid var(--border);
+
+      color: #747d84;
+
+      font-size: .72rem;
+      letter-spacing: .1em;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
     }
 
-    footer .center {
-      color: var(--gold);
-      text-align: center;
-    }
+    /* -------------------------------------------------- */
+    /* RESPONSIVE                                         */
+    /* -------------------------------------------------- */
 
-    footer .right {
-      text-align: right;
-    }
+    @media (max-width: 900px) {
+      .brandbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
 
-    /* MOBILE */
+      .site-nav {
+        gap: 18px;
+      }
 
-    @media (max-width: 1100px) {
       .hero {
         grid-template-columns: 1fr;
+        padding: 30px;
       }
 
-      .hero-visual {
-        min-height: 380px;
-      }
-
-      .commands {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .nav {
-        display: none;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .site-shell {
-        width: min(100% - 14px, 1500px);
-      }
-
-      .topbar {
-        padding: 11px 12px;
-      }
-
-      .brand-copy span {
-        display: none;
-      }
-
-      .system-status {
-        font-size: 0.55rem;
-        padding: 7px 9px;
-      }
-
-      .hero-copy {
-        padding: 38px 22px 28px;
-      }
-
-      h1 {
-        font-size: clamp(2.8rem, 15vw, 4.5rem);
-      }
-
-      .hero-sub {
-        letter-spacing: 0.12em;
-        font-size: 0.82rem;
-      }
-
-      .hero-visual {
+      .avatar-wrap {
         min-height: 330px;
       }
 
-      .house-core {
-        width: 220px;
-      }
-
-      .house-symbol {
-        width: 115px;
-        height: 115px;
-      }
-
-      .vertical-copy {
-        display: none;
+      .avatar {
+        width: 340px;
       }
 
       .commands {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
       }
 
-      .command-card {
-        min-height: 170px;
-      }
-
-      .rules-grid {
+      .rules {
         grid-template-columns: 1fr;
       }
 
-      .rule-card.wide {
+      .rule.wide {
         grid-column: auto;
-      }
-
-      footer {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      footer .right {
-        text-align: center;
       }
     }
 
-    @media (max-width: 460px) {
+    @media (max-width: 560px) {
+      .page {
+        width: min(100% - 18px, 1180px);
+      }
+
+      .brandbar {
+        gap: 18px;
+      }
+
+      .brand-tagline {
+        max-width: 280px;
+        line-height: 1.5;
+      }
+
+      .site-nav {
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .nav-item {
+        font-size: .55rem;
+        letter-spacing: .07em;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 3.2rem;
+      }
+
       .commands {
         grid-template-columns: 1fr;
       }
 
-      .command-card {
-        min-height: 150px;
+      .footer {
+        flex-direction: column;
       }
     }
   </style>
@@ -848,533 +569,452 @@
 
 <body>
 
-  <div class="site-shell">
+  <div class="page">
 
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark"></div>
+    <!-- HEADER -->
 
-        <div class="brand-copy">
-          <strong>THE HOUSE</strong>
-          <span>Observe • Record • Balance</span>
+    <header class="brandbar">
+
+      <div>
+        <div class="brand">THE HOUSE</div>
+
+        <div class="brand-tagline">
+          AUTHORITY IS EARNED. THE TOP IS TAKEN.
         </div>
       </div>
 
-      <div class="nav">
-        <span>System</span>
-        <span>Markets</span>
-        <span>Authority</span>
-        <span class="active">Rules</span>
-        <span>Archive</span>
-      </div>
+      <nav class="site-nav" aria-label="Main navigation">
 
-      <div class="system-status">
-        <div class="system-dot"></div>
-        Operational
-      </div>
+        <span
+          class="nav-item nav-disabled"
+          aria-disabled="true"
+        >
+          SYSTEM
+        </span>
+
+        <span
+          class="nav-item nav-disabled"
+          aria-disabled="true"
+        >
+          LEADERBOARD
+        </span>
+
+        <span class="nav-item nav-active">
+          RULES
+        </span>
+
+        <span
+          class="nav-item nav-disabled"
+          aria-disabled="true"
+        >
+          ARCHIVE
+        </span>
+
+      </nav>
+
     </header>
 
-    <main>
+    <!-- HERO -->
 
-      <section class="hero">
+    <section class="hero">
 
-        <div class="hero-copy">
-          <div class="hero-kicker">The House</div>
+      <div class="hero-copy">
 
-          <h1>
-            Authority<br>
-            <span class="gold">Dealer Rules</span>
-          </h1>
-
-          <div class="hero-sub">
-            Authority is the stream’s persistent viewer currency.
-          </div>
-
-          <div class="hero-rule"></div>
-
-          <div class="hero-alert">
-            <span class="big">If Authority moves,</span><br>
-            there should be a record explaining why.
-          </div>
-
-          <div class="hero-tagline">
-            More than a game. <strong>A system.</strong>
-          </div>
+        <div class="eyebrow">
+          Official System Rules
         </div>
 
-        <div class="hero-visual">
+        <h1>
+          Authority<br>
+          <span>Dealer Rules</span>
+        </h1>
 
-          <div class="house-core">
-            <div class="house-symbol"></div>
-          </div>
+        <p>
+          Authority is the stream’s persistent viewer currency.
+          Claim it, wager it, climb ranks, enter challenges,
+          and compete for your place at the top.
+        </p>
 
-          <div class="vertical-copy">
-            The House sees<br>
-            The House remembers<br>
-            The House records<br>
-            The House keeps<br>
-            the ledger
-          </div>
+        <div class="house-rule">
+          <strong>If Authority moves,</strong>
+          there should be a record explaining why.
+        </div>
 
+      </div>
+
+      <div class="avatar-wrap">
+        <div class="avatar-glow"></div>
+
+        <img
+          class="avatar"
+          src="three-avatar.png"
+          alt="Three"
+        >
+      </div>
+
+    </section>
+
+    <!-- CORE COMMANDS -->
+
+    <section class="quick-start">
+
+      <div class="section-label">
+        Start Here
+      </div>
+
+      <h2 class="section-title">
+        Core Commands
+      </h2>
+
+      <p class="section-intro">
+        These are the main commands viewers need to participate.
+      </p>
+
+      <div class="commands">
+
+        <div class="command">
+          <strong>!claim</strong>
+          <span>Claim Authority when eligible.</span>
+        </div>
+
+        <div class="command">
+          <strong>!authority</strong>
+          <span>Check your current Authority balance.</span>
+        </div>
+
+        <div class="command">
+          <strong>!rank</strong>
+          <span>Check your current rank.</span>
+        </div>
+
+        <div class="command">
+          <strong>!bet yes &lt;amount&gt;</strong>
+          <span>Bet on YES while a market is open.</span>
+        </div>
+
+        <div class="command">
+          <strong>!bet no &lt;amount&gt;</strong>
+          <span>Bet on NO while a market is open.</span>
+        </div>
+
+        <div class="command">
+          <strong>!rules</strong>
+          <span>Returns this official rules page.</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- RULES -->
+
+    <div class="rules">
+
+      <section class="rule">
+
+        <h2>Authority & Identity</h2>
+
+        <p>
+          Authority persists between streams.
+          Your balance and rank belong to your
+          <span class="highlight">stable Kick account ID</span>,
+          not only your visible username.
+        </p>
+
+        <p>
+          Usernames are stored as readable snapshots.
+          If your display name changes, your underlying Authority
+          account and history remain tied to the same stable identity.
+        </p>
+
+      </section>
+
+      <section class="rule">
+
+        <h2>Claims</h2>
+
+        <p>
+          Use <code>!claim</code> when eligible.
+        </p>
+
+        <p>
+          Claims are subject to a cooldown.
+          Attempting to claim too early is rejected,
+          and no Authority is added.
+        </p>
+
+        <p>
+          Valid identified claim attempts are recorded by the system.
+        </p>
+
+      </section>
+
+      <section class="rule">
+
+        <h2>Betting</h2>
+
+        <p>
+          Markets open and close during the stream.
+        </p>
+
+        <p>
+          Use
+          <code>!bet yes &lt;amount&gt;</code>
+          or
+          <code>!bet no &lt;amount&gt;</code>.
+        </p>
+
+        <p>
+          Bets may be rejected if the market is not open,
+          you do not have enough Authority,
+          you already wagered on that market,
+          or the command is invalid.
+        </p>
+
+        <p class="safe">
+          Rejected wagers do not deduct Authority.
+        </p>
+
+      </section>
+
+      <section class="rule">
+
+        <h2>Market Resolution</h2>
+
+        <p>
+          Accepted wagers are settled only after the market is resolved.
+        </p>
+
+        <p>
+          Market opening, closing, resolution,
+          winning wagers, and losing wagers are recorded by Authority Dealer.
+        </p>
+
+        <p>
+          Once resolved, the same market cannot be settled again.
+        </p>
+
+      </section>
+
+      <section class="rule">
+
+        <h2>Viewer 1v1</h2>
+
+        <p>
+          Viewer 1v1 redemptions enter the challenger queue.
+        </p>
+
+        <p>
+          <span class="highlight">Viewer wins:</span>
+          +75,000 Authority.
+        </p>
+
+        <p>
+          <span class="highlight">Three wins:</span>
+          no Authority prize.
+        </p>
+
+        <p>
+          The correct prize is attached to the active challenge
+          and awarded automatically during resolution.
+        </p>
+
+      </section>
+
+      <section class="rule">
+
+        <h2>Run It Back!</h2>
+
+        <p>
+          Run It Back uses the same persistent challenger system.
+        </p>
+
+        <p>
+          <span class="highlight">Viewer wins:</span>
+          +250,000 Authority.
+        </p>
+
+        <p>
+          <span class="highlight">Three wins:</span>
+          no Authority prize.
+        </p>
+
+        <p>
+          The operator does not manually choose
+          between the two challenge payouts.
+        </p>
+
+      </section>
+
+      <section class="rule">
+
+        <h2>Overdelegated</h2>
+
+        <p>
+          If Overdelegated lands, every eligible viewer receives
+          <span class="highlight">+100,000 Authority</span>.
+        </p>
+
+        <p>
+          Eligibility depends on Authority Dealer identifying your account
+          during the
+          <span class="highlight">current Authority Session</span>.
+        </p>
+
+        <ul>
+          <li>ordinary Kick chat activity</li>
+          <li>Authority Dealer commands</li>
+          <li>betting activity</li>
+          <li>Channel Reward activity</li>
+          <li>challenger activity</li>
+        </ul>
+
+        <div class="blue-note">
+          To guarantee eligibility, interact with chat
+          or Authority Dealer at least once during the current session.
         </div>
 
       </section>
 
-      <!-- GETTING STARTED -->
+      <section class="rule">
 
-      <section class="section-frame">
+        <h2>Silent Viewers</h2>
 
-        <div class="section-head">
-          <div class="section-title">
-            <span class="slashes">///</span>
-            Getting Started
-          </div>
+        <p>
+          Simply having the stream open does not guarantee
+          that the platform exposes your account identity to Authority Dealer.
+        </p>
 
-          <div class="section-meta">
-            Essential Commands
-          </div>
-        </div>
+        <p>
+          Completely silent viewers who never generate an identifiable interaction
+          cannot be guaranteed an Overdelegated payout.
+        </p>
 
-        <div class="commands">
+        <p>
+          This rule exists so the system does not pretend it can identify
+          viewers that Kick never exposes to it.
+        </p>
 
-          <div class="command-card">
-            <div class="command-icon">▣</div>
-            <strong>!claim</strong>
-            <p>Claim Authority when eligible.</p>
-            <div class="command-foot">
-              <span>Claim</span>
-              <span>01</span>
-            </div>
-          </div>
-
-          <div class="command-card">
-            <div class="command-icon">◉</div>
-            <strong>!authority</strong>
-            <p>Check your current Authority balance.</p>
-            <div class="command-foot">
-              <span>Balance</span>
-              <span>02</span>
-            </div>
-          </div>
-
-          <div class="command-card">
-            <div class="command-icon">▲</div>
-            <strong>!rank</strong>
-            <p>Check your current Authority rank.</p>
-            <div class="command-foot">
-              <span>Rank</span>
-              <span>03</span>
-            </div>
-          </div>
-
-          <div class="command-card">
-            <div class="command-icon">YES</div>
-            <strong>!bet yes &lt;amount&gt;</strong>
-            <p>Bet Authority on YES while a market is open.</p>
-            <div class="command-foot">
-              <span>Bet Yes</span>
-              <span>04</span>
-            </div>
-          </div>
-
-          <div class="command-card">
-            <div class="command-icon">NO</div>
-            <strong>!bet no &lt;amount&gt;</strong>
-            <p>Bet Authority on NO while a market is open.</p>
-            <div class="command-foot">
-              <span>Bet No</span>
-              <span>05</span>
-            </div>
-          </div>
-
-          <div class="command-card">
-            <div class="command-icon">?</div>
-            <strong>!rules</strong>
-            <p>Returns the official Authority Dealer rules page.</p>
-            <div class="command-foot">
-              <span>Rules</span>
-              <span>06</span>
-            </div>
-          </div>
-
-        </div>
       </section>
 
-      <!-- RULES GRID -->
-
-      <div class="rules-grid">
-
-        <section class="rule-card">
-          <div class="rule-number">01</div>
-          <h2 class="rule-kicker">Authority & Identity</h2>
-          <div class="gold-line"></div>
-
-          <p>
-            Authority is persistent. Your balance and rank carry between streams.
-          </p>
-
-          <p>
-            Your Authority account is tied to your
-            <span class="highlight">stable Kick account ID</span>,
-            not only your visible username.
-          </p>
-
-          <p>
-            Usernames are stored as readable snapshots, but the stable account ID is what
-            protects your balance and history if your display name changes.
-          </p>
-
-          <div class="microcopy">
-            Same account. Across every stream.
-          </div>
-        </section>
-
-        <section class="rule-card">
-          <div class="rule-number">02</div>
-          <h2 class="rule-kicker">Claims</h2>
-          <div class="gold-line"></div>
-
-          <p>
-            Use <code>!claim</code> to collect Authority when eligible.
-          </p>
-
-          <p>
-            Claims are subject to a cooldown. If you claim too early, the attempt is rejected
-            and no Authority is added.
-          </p>
-
-          <p>
-            Successful and rejected claims are recorded when the system has enough valid
-            identity information to process the attempt.
-          </p>
-
-          <div class="microcopy">
-            Respect the cooldown.
-          </div>
-        </section>
-
-        <section class="rule-card">
-          <div class="rule-number">03</div>
-          <h2 class="rule-kicker">Betting</h2>
-          <div class="gold-line"></div>
-
-          <p>
-            Markets open and close throughout the stream.
-          </p>
-
-          <p>
-            Use <code>!bet yes &lt;amount&gt;</code> or
-            <code>!bet no &lt;amount&gt;</code>.
-          </p>
-
-          <p>
-            Bets may be rejected if the market is closed, you do not have enough Authority,
-            you already wagered on that market, or the input is invalid.
-          </p>
-
-          <p>
-            <span class="safe">Rejected wagers do not deduct Authority.</span>
-          </p>
-
-          <div class="microcopy">
-            One market. One position.
-          </div>
-        </section>
-
-        <section class="rule-card">
-          <div class="rule-number">04</div>
-          <h2 class="rule-kicker">Market Resolution</h2>
-          <div class="gold-line"></div>
-
-          <p>
-            Accepted wagers are settled only after the market is resolved.
-          </p>
-
-          <p>
-            Market opening, closing, resolution, winning wagers, and losing wagers are
-            recorded by Authority Dealer.
-          </p>
-
-          <p>
-            Once a market has been resolved, the same market cannot be settled again.
-          </p>
-
-          <div class="microcopy">
-            Open. Close. Resolve.
-          </div>
-        </section>
-
-        <section class="rule-card">
-          <div class="rule-number">05</div>
-          <h2 class="rule-kicker">Viewer 1v1</h2>
-          <div class="gold-line"></div>
-
-          <p>
-            Viewer 1v1 redemptions enter the persistent challenger queue.
-          </p>
-
-          <p>
-            <span class="highlight">Viewer wins:</span>
-            the active challenger receives
-            <span class="highlight">75,000 Authority</span>.
-          </p>
-
-          <p>
-            <span class="highlight">Three wins:</span>
-            no Authority prize is awarded.
-          </p>
-
-          <p>
-            The correct payout is tied to the active challenge itself and is handled
-            automatically during resolution.
-          </p>
-
-          <div class="microcopy">
-            Challenge accepted.
-          </div>
-        </section>
-
-        <section class="rule-card">
-          <div class="rule-number">06</div>
-          <h2 class="rule-kicker">Run It Back!</h2>
-          <div class="gold-line"></div>
-
-          <p>
-            Run It Back! uses the same persistent challenger system.
-          </p>
-
-          <p>
-            <span class="highlight">Viewer wins:</span>
-            the active challenger receives
-            <span class="highlight">250,000 Authority</span>.
-          </p>
-
-          <p>
-            <span class="highlight">Three wins:</span>
-            no Authority prize is awarded.
-          </p>
-
-          <p>
-            The operator does not manually choose between the 75,000 and 250,000 payouts.
-          </p>
-
-          <div class="microcopy">
-            Same system. Higher stakes.
-          </div>
-        </section>
-
-        <section class="rule-card">
-          <div class="rule-number">07</div>
-          <h2 class="rule-kicker">Overdelegated</h2>
-          <div class="gold-line"></div>
-
-          <p>
-            Overdelegated is a rare Wheel result.
-          </p>
-
-          <p>
-            When it lands, every eligible viewer receives
-            <span class="highlight">100,000 Authority</span>.
-          </p>
-
-          <p>
-            Eligibility is based on Authority Dealer identifying your Kick account as
-            participating during the <span class="highlight">current Authority Session</span>.
-          </p>
-
-          <ul>
-            <li>ordinary Kick chat activity</li>
-            <li>Authority Dealer commands</li>
-            <li>betting activity</li>
-            <li>Channel Reward redemptions</li>
-            <li>challenger activity</li>
-          </ul>
-
-          <div class="microcopy">
-            Be seen to benefit.
-          </div>
-        </section>
-
-        <section class="rule-card">
-          <div class="rule-number">08</div>
-          <h2 class="rule-kicker">Overdelegated Eligibility</h2>
-          <div class="gold-line"></div>
-
-          <p>
-            To guarantee eligibility, interact with chat or Authority Dealer at least once
-            during the current Authority Session.
-          </p>
-
-          <p>
-            Completely silent viewers who the platform never exposes to Authority Dealer
-            cannot be guaranteed a payout.
-          </p>
-
-          <p>
-            Repeated activity does not create duplicate eligibility records.
-          </p>
-
-          <p>
-            Viewer identity is anchored to the stable Kick account ID.
-          </p>
-
-          <div class="microcopy">
-            Presence must be observable.
-          </div>
-        </section>
-
-        <section class="rule-card">
-          <div class="rule-number">09</div>
-          <h2 class="rule-kicker">Ranks, Wraith & Paragon</h2>
-          <div class="gold-line"></div>
-
-          <p>
-            Authority-changing events can automatically trigger progression.
-          </p>
-
-          <p>
-            Rank, Wraith, and Paragon state are evaluated by the backend after qualifying
-            Authority changes.
-          </p>
-
-          <p>
-            You do not need to type <code>!rank</code> for Authority Dealer to recognize
-            legitimate progression.
-          </p>
-
-          <p>
-            Paragon unlock state is persistent and protected from repeated false unlocks.
-          </p>
-
-          <div class="microcopy">
-            The ledger remembers progression.
-          </div>
-        </section>
-
-        <section class="rule-card">
-          <div class="rule-number">10</div>
-          <h2 class="rule-kicker">Channel Rewards & Challenges</h2>
-          <div class="gold-line"></div>
-
-          <p>
-            Certain Channel Rewards create persistent challenger entries.
-          </p>
-
-          <p>
-            Queue order, challenger state, start, resolution, cancellation, and payout
-            records persist through the system.
-          </p>
-
-          <p>
-            Duplicate redemption protection prevents the same reward redemption from
-            creating another legitimate challenger.
-          </p>
-
-          <div class="microcopy">
-            One redemption. One entry.
-          </div>
-        </section>
-
-        <section class="rule-card">
-          <div class="rule-number">11</div>
-          <h2 class="rule-kicker">Corrections / Refunds</h2>
-          <div class="gold-line"></div>
-
-          <p>
-            If a legitimate missed Authority payment is confirmed, the system includes an
-            audited correction path.
-          </p>
-
-          <p>
-            Refunds are <span class="safe">positive-only corrections</span>, not a general
-            balance editor.
-          </p>
-
-          <p>
-            A correction records the target account, exact amount, reason, balance before,
-            balance after, execution identity, and operator information when available.
-          </p>
-
-          <p>
-            Duplicate execution protection prevents the same correction from paying twice.
-          </p>
-
-          <div class="microcopy">
-            Mistakes can be fixed — with a record.
-          </div>
-        </section>
-
-        <section class="rule-card">
-          <div class="rule-number">12</div>
-          <h2 class="rule-kicker">Audit & Fairness</h2>
-          <div class="gold-line"></div>
-
-          <p>
-            Authority Dealer keeps persistent records for important game activity.
-          </p>
-
-          <ul>
-            <li>successful and rejected claims</li>
-            <li>accepted and rejected wagers</li>
-            <li>market lifecycle events</li>
-            <li>wager wins and losses</li>
-            <li>rank / Wraith / Paragon transitions</li>
-            <li>Channel Reward and challenger events</li>
-            <li>challenge payouts</li>
-            <li>Overdelegated payouts</li>
-            <li>refunds and corrections</li>
-          </ul>
-
-          <div class="microcopy">
-            Every important transaction leaves a trace.
-          </div>
-        </section>
-
-        <section class="rule-card wide">
-          <div class="rule-number">13</div>
-          <h2 class="rule-kicker">Questions or Disputes</h2>
-          <div class="gold-line"></div>
-
-          <p>
-            If something appears wrong, explain what happened in chat.
-          </p>
-
-          <p>
-            Where possible, the operator can compare Authority history, markets, wagers,
-            challenger records, payouts, and correction history against the persisted system state.
-          </p>
-
-          <p>
-            If a legitimate missed payment is confirmed, the exact amount can be corrected through
-            the audited refund system instead of silently rewriting someone’s balance.
-          </p>
-
-          <div class="system-note">
-            <strong>THE HOUSE RULE:</strong>
-            if Authority moves, the system should be able to explain why.
-          </div>
-
-          <div class="microcopy">
-            Disputes are checked against the ledger.
-          </div>
-        </section>
-
-      </div>
-
-    </main>
-
-    <footer>
-      <div>
-        The House • Authority Dealer
-      </div>
-
-      <div class="center">
-        Observe • Record • Balance
-      </div>
-
-      <div class="right">
-        System Status: Operational
-      </div>
+      <section class="rule">
+
+        <h2>Ranks, Wraith & Paragon</h2>
+
+        <p>
+          Authority-changing events can automatically trigger progression.
+        </p>
+
+        <p>
+          Rank, Wraith, and Paragon state are evaluated by the backend
+          after qualifying Authority changes.
+        </p>
+
+        <p>
+          You do not need to run <code>!rank</code>
+          for a legitimate progression event to be recognized.
+        </p>
+
+      </section>
+
+      <section class="rule">
+
+        <h2>Channel Rewards & Challenges</h2>
+
+        <p>
+          Certain Channel Rewards create challenger entries.
+        </p>
+
+        <p>
+          Queue state, challenge start, resolution,
+          cancellation, and prize events are stored persistently.
+        </p>
+
+        <p>
+          Duplicate redemption protection prevents the same redemption
+          from creating another legitimate challenger entry.
+        </p>
+
+      </section>
+
+      <section class="rule">
+
+        <h2>Corrections & Refunds</h2>
+
+        <p>
+          If a legitimate missed Authority payment is confirmed,
+          Authority Dealer includes an audited correction system.
+        </p>
+
+        <p>
+          Refunds are
+          <span class="safe">positive-only corrections</span>.
+          They are not a general-purpose balance editor.
+        </p>
+
+        <p>
+          Corrections record the target account,
+          exact amount, reason, balance before and after,
+          execution identity, and operator information when available.
+        </p>
+
+      </section>
+
+      <section class="rule">
+
+        <h2>Audit & Fairness</h2>
+
+        <p>
+          Authority Dealer keeps persistent records
+          for important game activity.
+        </p>
+
+        <ul>
+          <li>claims and rejected claims</li>
+          <li>wagers and rejected wagers</li>
+          <li>market lifecycle events</li>
+          <li>wager settlements</li>
+          <li>rank progression</li>
+          <li>challenge events and payouts</li>
+          <li>Overdelegated payouts</li>
+          <li>refunds and corrections</li>
+        </ul>
+
+      </section>
+
+      <section class="rule wide">
+
+        <h2>Questions or Disputes</h2>
+
+        <p>
+          If something appears wrong,
+          explain what happened in chat.
+        </p>
+
+        <p>
+          Where possible, the operator can compare Authority history,
+          market events, wagers, challenge records,
+          payouts, and corrections against the persistent system state.
+        </p>
+
+        <p>
+          If a legitimate missed payment is confirmed,
+          the exact amount can be corrected through the audited refund system
+          instead of silently rewriting a viewer’s balance.
+        </p>
+
+        <div class="house-rule">
+          <strong>The House rule:</strong>
+          if Authority moves, the system should be able to explain why.
+        </div>
+
+      </section>
+
+    </div>
+
+    <footer class="footer">
+      <div>The House</div>
+      <div>Authority Dealer</div>
     </footer>
 
   </div>
